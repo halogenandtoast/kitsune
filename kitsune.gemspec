@@ -4,12 +4,13 @@ version: !ruby/object:Gem::Version
   version: 0.0.1
 platform: ruby
 authors: 
-- Matthew Mongeau
+- Matthew Mongeau <matt@toastyapps.com>
+- Tom Scott <tubbo@psychedeli.ca>
 autorequire: 
 bindir: bin
 cert_chain: []
 
-date: 2009-08-21 00:00:00 -04:00
+date: 2009-08-25 00:00:00 -04:00
 default_executable: 
 dependencies: []
 

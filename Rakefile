@@ -7,7 +7,7 @@ gem_spec = Gem::Specification.new do |gem_spec|
   gem_spec.email = "matt@toastyapps.com"
   gem_spec.homepage = "http://github.com/toastyapps/kitsune"
   gem_spec.description = "Integrated Rails Content Management System."
-  gem_spec.authors = ["Matthew Mongeau"]
+  gem_spec.authors = ["Matthew Mongeau <matt@toastyapps.com>", "Tom Scott <tubbo@psychedeli.ca>"]
   gem_spec.files = FileList["[A-Z]*", "{app,config,generators,lib,rails}/**/*"]
 end
 
