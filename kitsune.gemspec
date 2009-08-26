@@ -29,8 +29,6 @@ files:
 - app/controllers/admin
 - app/controllers/admin/kitsune
 - app/controllers/admin/kitsune/pages_controller.rb
-- app/controllers/kitsune
-- app/models
 - app/views
 - app/views/admin
 - app/views/admin/pages
