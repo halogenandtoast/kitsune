@@ -1,0 +1,5 @@
+h1. Kitsune
+
+A drop in Rails CMS
+
+*This is still being developed and is currently barely useable*
