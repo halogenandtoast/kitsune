@@ -10,10 +10,19 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-08-25 00:00:00 -04:00
+date: 2009-08-26 00:00:00 -04:00
 default_executable: 
-dependencies: []
-
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: mislav-will_paginate
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ~>
+      - !ruby/object:Gem::Version 
+        version: 2.3.11
+    version: 
 description: Integrated Rails Content Management System.
 email: matt@toastyapps.com
 executables: []
@@ -28,9 +37,20 @@ files:
 - app/controllers
 - app/controllers/admin
 - app/controllers/admin/kitsune
+- app/controllers/admin/kitsune/models_controller.rb
 - app/controllers/admin/kitsune/pages_controller.rb
+- app/helpers
+- app/helpers/admin
+- app/helpers/admin/kitsune
+- app/helpers/admin/kitsune/models_helper.rb
 - app/views
 - app/views/admin
+- app/views/admin/kitsune
+- app/views/admin/kitsune/models
+- app/views/admin/kitsune/models/edit.html.erb
+- app/views/admin/kitsune/models/index.html.erb
+- app/views/admin/kitsune/models/new.html.erb
+- app/views/admin/kitsune/models/show.html.erb
 - app/views/admin/pages
 - app/views/admin/pages/index.html.erb
 - app/views/admin/pages/new.html.erb
@@ -70,10 +90,10 @@ required_rubygems_version: !ruby/object:Gem::Requirement
     - !ruby/object:Gem::Version 
       version: "0"
   version: 
-requirements: []
-
+requirements: 
+- mislav-will_paginate
 rubyforge_project: 
-rubygems_version: 1.3.5
+rubygems_version: 1.3.4
 signing_key: 
 specification_version: 3
 summary: Integrated Rails Content Management System.

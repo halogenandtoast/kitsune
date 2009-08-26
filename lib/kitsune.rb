@@ -23,4 +23,9 @@ module Kitsune
       file.split('/').last.split('.').first
     end
   end
+  
+  def self.associations(model)
+    klass = model.is_a?(String) ? model.classify.constantize : model
+    klass.reflections
+  end
 end

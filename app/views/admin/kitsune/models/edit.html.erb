@@ -1,0 +1,12 @@
+<p>Edit</p>
+<% form_tag url_for(:action => 'update', :model => @model.to_s) do%>
+	<% @model.columns.each do |column| %>
+		<% unless column.primary %>
+			<div>
+				<%= label_tag @model, column.name %>
+				<%= field_for(@model, column, @resource.send(column.name)) %>
+			</div>
+		<% end %>
+	<% end %>
+	<%= submit_tag 'Save' %>
+<% end %>
