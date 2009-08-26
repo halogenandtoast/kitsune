@@ -54,6 +54,9 @@ files:
 - app/views/admin/pages
 - app/views/admin/pages/index.html.erb
 - app/views/admin/pages/new.html.erb
+- app/views/layouts
+- app/views/layouts/admin
+- app/views/layouts/admin/kitsune.html.erb
 - config/kitsune_routes.rb
 - generators/kitsune
 - generators/kitsune/kitsune_generator.rb
@@ -63,6 +66,9 @@ files:
 - generators/kitsune/templates/page.rb
 - generators/kitsune/USAGE
 - lib/kitsune
+- lib/kitsune/active_record.rb
+- lib/kitsune/admin
+- lib/kitsune/admin/builder.rb
 - lib/kitsune/config.rb
 - lib/kitsune/extensions
 - lib/kitsune/extensions/routes.rb

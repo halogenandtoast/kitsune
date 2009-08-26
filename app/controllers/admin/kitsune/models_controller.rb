@@ -1,5 +1,6 @@
 class Admin::Kitsune::ModelsController < ApplicationController
   unloadable
+  layout 'admin/kitsune'
   
   def index
     @models = Kitsune.models

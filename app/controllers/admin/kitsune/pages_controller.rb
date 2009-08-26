@@ -1,6 +1,6 @@
 class Admin::Kitsune::PagesController < ApplicationController
   unloadable
-  
+
   def index
     @pages = ::Page.all
     render :template => 'admin/pages/index'

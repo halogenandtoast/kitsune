@@ -1,5 +1,7 @@
 require 'kitsune/config'
 require 'kitsune/extensions/routes'
+require 'kitsune/active_record'
+require 'kitsune/admin/builder'
 
 module Kitsune
   def self.models
@@ -29,3 +31,5 @@ module Kitsune
     klass.reflections
   end
 end
+
+ActiveRecord::Base.send(:include, Kitsune::ActiveRecord)
