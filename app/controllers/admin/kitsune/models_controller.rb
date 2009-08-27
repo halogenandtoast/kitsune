@@ -9,15 +9,29 @@ class Admin::Kitsune::ModelsController < ApplicationController
   def show
     @model = params[:model].classify.constantize
     @records = @model.paginate(:page => params[:page])
+    
+    @columns = @model.columns
+    if @model.kitsune_admin[:display][:fields]
+      @columns = @columns.select {|column| @model.kitsune_admin[:display][:fields].include?(column.name.to_sym)}
+    end
+    
   end
   
   def new
     @model = params[:model].classify.constantize
+    @columns = @model.columns
+    if @model.kitsune_admin[:edit][:fields]
+      @columns = @columns.select {|column| @model.kitsune_admin[:edit][:fields].include?(column.name.to_sym)}
+    end
   end
   
   def edit
     @model = params[:model].classify.constantize
     @resource = @model.find(params[:id])
+    @columns = @model.columns
+    if @model.kitsune_admin[:edit][:fields]
+      @columns = @columns.select {|column| @model.kitsune_admin[:edit][:fields].include?(column.name.to_sym)}
+    end
   end
   
   def create

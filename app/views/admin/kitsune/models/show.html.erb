@@ -4,7 +4,7 @@
 <table>
 	<thead>
 		<tr>
-			<% @model.columns.each do |column| %>
+			<% @columns.each do |column| %>
 				<% unless column.primary %>
 					<th><%= column.name %></th>
 				<% end %>
@@ -15,9 +15,9 @@
 	<tbody>
 		<% @records.each do |record| %>
 			<tr>
-				<% @model.columns.each do |column| %>
+				<% @columns.each do |column| %>
 					<% unless column.primary %>
-						<td><%= record.send(column.name) %></td>
+						<td><%= truncate(record.send(column.name).to_s, :length => 20) %></td>
 					<% end %>
 				<% end %>
 				<td>

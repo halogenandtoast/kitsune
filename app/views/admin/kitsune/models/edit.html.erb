@@ -1,7 +1,7 @@
 <%= link_to 'Back', url_for(:action => 'show', :model => @model.to_s) %>
 <p>Edit</p>
 <% form_tag url_for(:action => 'update', :model => @model.to_s) do%>
-	<% @model.columns.each do |column| %>
+	<% @columns.each do |column| %>
 		<% unless column.primary %>
 			<div>
 				<%= label_tag @model, column.name %>
