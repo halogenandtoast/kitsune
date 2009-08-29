@@ -1,13 +1,5 @@
-<%= link_to 'Back', url_for(:action => 'show', :model => @model.to_s) %>
-<p>New</p>
-<% form_tag url_for(:action => 'create', :model => @model.to_s) do%>
-	<% @columns.each do |column| %>
-		<% unless column.primary %>
-			<div>
-				<%= label_tag @model, column.name %>
-				<%= field_for(@model, column) %>
-			</div>
-		<% end %>
-	<% end %>
-	<%= submit_tag 'Save' %>
-<% end %>
+<div id='menu'>
+	<%= link_to 'Back', url_for(:action => 'show', :model => @model.to_s) %>
+</div>
+<h3>New <%= @model.to_s %></h3>
+<%= render 'form' %>

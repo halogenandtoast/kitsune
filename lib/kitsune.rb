@@ -30,6 +30,16 @@ module Kitsune
     klass = model.is_a?(String) ? model.classify.constantize : model
     klass.reflections
   end
+  
+  class FauxColumn
+    attr_accessor :name, :type
+    def initialize(name, type)
+      @name, @type = name, type
+    end
+    def primary
+      false
+    end
+  end
 end
 
 ActiveRecord::Base.send(:include, Kitsune::ActiveRecord)

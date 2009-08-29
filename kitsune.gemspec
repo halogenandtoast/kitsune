@@ -10,7 +10,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-08-27 00:00:00 -04:00
+date: 2009-08-29 00:00:00 -04:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -47,6 +47,7 @@ files:
 - app/views/admin
 - app/views/admin/kitsune
 - app/views/admin/kitsune/models
+- app/views/admin/kitsune/models/_form.html.erb
 - app/views/admin/kitsune/models/edit.html.erb
 - app/views/admin/kitsune/models/index.html.erb
 - app/views/admin/kitsune/models/new.html.erb

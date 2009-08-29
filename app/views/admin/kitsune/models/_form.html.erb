@@ -1,0 +1,16 @@
+<% form_for @resource, :url =>  url_for(:action => (@resource.new_record? ? 'create' : 'update'), :model => @model.to_s), :method => (@resource.new_record? ? :post : :put) do |form| %>
+	<%= form.error_messages %>
+	<% @columns.each do |column| %>
+		<% unless column.primary %>
+			<div class='field'>
+				<%= form.label column.name %>
+				<%= field_for(form, column, @resource.send(column.name)) %>
+			</div>
+		<% end %>
+	<% end %>
+	<%= form.submit 'Save', :class => 'submit' %>
+<% end %>
+
+<% @reflections.each do |key, reflection| %>
+	<%= reflection.macro %> :<%= key %>
+<% end %>
