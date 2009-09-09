@@ -1,7 +1,7 @@
 module Admin::Kitsune::ModelsHelper
   
   def sort_link_to(resource, column)
-    if resource.kitsune_admin[:sortable] && resource.kitsune_admin[:sortable].include?(column.name.to_sym)
+    if resource.kitsune_admin && resource.kitsune_admin[:sortable] && resource.kitsune_admin[:sortable].include?(column.name.to_sym)
       ascending = params[:sort] == column.name && params[:sort_dir] == 'DESC'
       options = {
         :model => @model.to_s,
