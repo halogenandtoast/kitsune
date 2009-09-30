@@ -3,6 +3,7 @@
 	|
 	<%= link_to "New #{@model}", url_for(:action => 'new', :model => @model.to_s) %>
 </div>
+<div id='body'>
 <table>
 	<thead>
 		<tr>
@@ -33,3 +34,4 @@
 </table>
 
 <%= will_paginate @records %>
+</div>

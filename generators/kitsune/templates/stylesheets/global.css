@@ -1,0 +1,381 @@
+/* ----- RESET ----- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100.01%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+blockquote, q
+{
+	quotes: none;
+}
+
+/*
+Safari doesn't support the quotes attribute, so we do this instead.
+*/
+blockquote:before, blockquote:after, q:before, q:after
+{
+	/*
+	CSS 2; used to remove quotes in case "none" fails below.
+	*/
+	content: "";
+	/*
+	CSS 2.1; will remove quotes if supported, and override the above.
+	User-agents that don't understand "none" should ignore it, and
+	keep the above value. This is here for future compatibility,
+	though I'm not 100% convinced that it's a good idea...
+	*/
+	content: none;
+}
+
+textarea { overflow: auto; }
+input { border: 0px solid white; margin: 0;  padding: 0; }
+
+
+
+body {
+	padding: 0 0;
+	width: 100%;
+	margin: 0 auto;
+	background: #B0DDE2 url(/images/kitsune/bg.jpg) 0 0 repeat-x;
+	color: #000;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.3em; 
+}
+
+/* -------HEADER------- */
+
+#header {
+	width: 100%;
+	height: 25px;
+	padding: 8px 0 6px 0;
+	
+}
+
+h1 a {
+	text-decoration: none;
+	color: #fff;
+	margin-left: 10px;
+}
+
+
+
+/* ------BODY---------- */
+
+#body {
+	width: 84%;
+	padding: 30px 3% 50px 3%;
+	margin: 40px 5% 10px 5%;
+	background-color: #fff;
+	
+}
+
+
+/* ----- HEADINGS ----- */
+h1, h2, h3, h4, h5 {
+		
+}
+
+h1 { 
+	font-size: 1.4em; 
+}
+h2 {
+	font-size: 2em;
+ }
+h3 {
+	font-size: 1.5em;
+}
+h4 {
+	font-size: 1.25em;
+}
+h5 {
+	font-size: 1em;
+}
+
+/* ----- PARAGRAPHS ----- */
+p {
+	font-size: 1em;
+}
+
+/* ----- LISTS ----- */
+
+li {
+}
+li p {
+}
+ol {
+}
+ul {
+}
+ol li {
+}
+ul li {
+}
+
+/* ----- IMAGES ----- */
+
+img {
+}
+img a {
+}
+img a:hover {
+}
+
+/* ----- LINKS ----- */
+
+a {
+}
+a:hover {
+}
+a:visited, a:active, a:focus {
+}
+a:visited {
+}
+a:active {
+}
+a:focus {
+}
+
+/* ----- FORMS ----- */
+
+form {
+}
+fieldset {
+	background: #F6F6F6 url(/images/kitsune/form-bg.gif) bottom left repeat-x;;
+	border: 1px solid #eee;
+	padding: 30px 40px 15px 20px;
+}
+
+h2.legend {
+	width: 100%;
+	border-bottom: 1px solid #eee;
+	font-size: 1.3em;
+	padding: 5px 0;
+	margin-bottom: 10px;
+	color: #555;
+}
+
+label {
+	font-weight: bold;
+	font-size: 1em;
+	margin: 0 0 3px 0;
+	text-transform: ;
+	color: #aaa;
+}
+input {
+	
+}
+textarea {
+}
+input, textarea {
+	font-family: "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+	font-size: .9em;
+	border: 1px solid #ccc;
+	padding: 5px;
+}
+
+input:focus, textarea:focus {
+	border: 1px solid #e1cd30;
+	background-color: #fbffeb;
+}
+
+
+
+select {
+	font-family: "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+	font-size: .9em;
+	
+}
+optgroup {
+}
+option {
+}
+
+fieldset {clear: both;}
+
+fieldset fieldset legend {padding: 0 0 1.5em; font-size: 1em;}
+* html legend {margin-left: -7px;} /* ie6 */
+*+html legend {margin-left: -7px;} /* ie7 */
+
+form .field, form .buttons {clear: both; margin: 0 0 1.5em;}
+form .field label {display: block;}
+form ul.fields {margin: 0 0 1.5em; padding: 0;}
+form ul.fields li {list-style-type: none; margin: 0;}
+form ul.inline li, form ul.inline label {display: inline;}
+form ul.inline li {padding: 0 .75em 0 0;}
+
+input.radio, input.checkbox {vertical-align: top;}
+label, button, input.submit, input.image {cursor: pointer;}
+input.submit { 
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	font-weight: bold;
+	font-size: 1.3em;
+	background-color: #333; 
+	color: #fff; 
+	border: none;
+	padding: 4px 20px;
+	}
+* html input.radio, * html input.checkbox {vertical-align: middle;} /* ie6 */
+*+html input.radio, *+html input.checkbox {vertical-align: middle;} /* ie7 */
+
+textarea {overflow: auto;}
+input.text, input.password, textarea, select {margin: 0; vertical-align: baseline;}
+input.text, input.password, textarea {border: 1px solid #444; padding: 2px;}
+
+/* horizontal layout */
+form.horizontal .field {padding-left: 150px;}
+form.horizontal .field label {display: inline; float: left; width: 140px; margin-left: -150px;}
+
+
+/* ----- TABLES ----- */
+
+table {
+	width: 100%;
+	padding: 0;
+	background: #fff;
+
+	
+}
+
+caption {
+	padding: 0 0 5px 0;
+	width: 700px;	 
+	text-align: right;
+}
+
+th {
+	color: #4f6b72;
+	border-bottom: 1px solid #ddd;
+
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+	background: #fff url(/images/kitsune/bg_header.jpg) no-repeat;
+	color: #555;
+}
+
+th.nobg {
+	border-top: 0;
+	border-left: 0;
+	border-right: 1px solid #ddd;
+	background: none;
+}
+
+td {
+	border-bottom: 1px solid #eee;
+	background: #f6f6f6;
+	padding: 8px 6px 8px 12px;
+	color: #333;
+	font-size: .9em;
+}
+
+
+tr.alt, td.alt {
+	background: #F5FAFA;
+	color: #797268;
+}
+
+
+
+
+
+/* BUTTON STYLES */		
+button { 
+	position: relative;
+	border: 0; 
+	padding: 0;
+	cursor: pointer;
+	overflow: visible; /* removes extra side padding in IE */
+	margin: 0 0;
+
+	
+}
+
+button::-moz-focus-inner {
+	border: none;  /* overrides extra padding in Firefox */
+}
+
+button span { 
+	position: relative;
+	display: block; 
+	white-space: nowrap;	
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	/* Safari and Google Chrome only - fix margins */
+	button span {
+		margin-top: -1px;
+	}
+}
+
+
+/* OPTIONAL BUTTON STYLES */		
+button.submitBtn { 
+	padding: 0 25px 0 0; 
+	margin-right:5px; 
+	font-size:1.1em; 
+	text-align: center; 
+	background: transparent url(/images/kitsune/grey-btn.png) no-repeat right -108px;
+	font-family: "Helvetica Neue";
+	font-weight: bold;
+	text-shadow:0 1px 0 #FFFFFF;
+	color: #000	;
+	font-size: 18px; 
+}
+	
+button.submitBtn span {
+	padding: 6px 0 0 25px; 
+	height:28px; 
+	background: transparent url(/images/kitsune/grey-btn.png) no-repeat left top; 
+
+}
+	
+button.submitBtn:active, button.submitBtnHover { /* the redundant class is used to apply the hover state with a script */
+	background-position: right -162px; 
+}
+	
+button.submitBtn:active span, button.submitBtnHover span {
+	background-position: 0 -54px;
+}
+
+

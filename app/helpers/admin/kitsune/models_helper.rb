@@ -14,12 +14,22 @@ module Admin::Kitsune::ModelsHelper
     end
   end
   
+  def detect_label(collection)
+    labels = Kitsune::Config.collection_label_methods
+    labels.each do |label_name|
+      return label_name if collection.first.respond_to?(label_name)
+    end
+    'to_s'
+  end
+  
   def field_for(form, column, value = nil)
     resource = form.object
     resource_name = ActionController::RecordIdentifier.singular_class_name(resource)
     field_name = "#{resource_name}[#{column.name}]"
     type = if resource.kitsune_admin && resource.kitsune_admin[:fields] && resource.kitsune_admin[:fields][column.name.to_sym]
       resource.kitsune_admin[:fields][column.name.to_sym][:type]
+    elsif column.name =~ /_id$/
+      :select
     else
       case column.type
       when :string, :integer then :text_field
@@ -41,10 +51,23 @@ module Admin::Kitsune::ModelsHelper
           collection_options = resource.kitsune_admin[:fields][column.name.to_sym][:options]
           collection_options = collection_options.call if collection_options.is_a?(Proc)
           collection, id, name = collection_options
+          begin
+            id = :id unless !!id
+            collection = column.to_s.sub(/_id$/,'').camelize.constantize.all unless !!collection
+            name = detect_label(collection) unless !!name
+          rescue
+          end
+          
+          options = collection.map { |r| [ r.send(name), r.send(id) ] }
+        else
+          begin
+            id = :id
+            collection = column.name.to_s.sub(/_id$/,'').camelize.constantize.all
+            name = detect_label(collection)
+          rescue; end
           options = collection.map { |r| [ r.send(name), r.send(id) ] }
         end
         form.select column.name, options
-        
       else "FOOK"
     end
   end

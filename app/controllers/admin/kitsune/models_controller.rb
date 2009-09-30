@@ -3,7 +3,7 @@ class Admin::Kitsune::ModelsController < ApplicationController
   layout 'admin/kitsune'
   
   def index
-    @models = Kitsune.models
+    @models = Kitsune.models.reject{ |m| RAILS_DEFAULT_LOGGER.info(m.constantize); m.constantize.respond_to?(:kitsune_admin) && m.constantize.kitsune_admin.is_a?(Hash) && m.constantize.kitsune_admin[:no_admin] }
   end
   
   def show

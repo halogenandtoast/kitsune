@@ -1,5 +1,7 @@
 <div id='menu'>
 	<%= link_to 'Back', url_for(:action => 'show', :model => @model.to_s) %>
 </div>
-<h3>Edit <%= @model.to_s %></h3>
+<div id='body'>
+<h2 class='legend'>Edit <%= @model.to_s %></h3>
 <%= render 'form' %>
+</div>

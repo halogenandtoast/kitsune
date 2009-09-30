@@ -1,86 +1,12 @@
 <html>
 	<head>
 		<title>Kitsune CMS</title>
-		<style type='text/css'>
-			body {
-				background-color: #FFF;
-				font-family: sans-serif;
-			}
-			
-			.submit {
-				background-color: #BA2902;
-				color: #FFF;
-			}
-			
-			h3 {
-				color: #BA2902;
-			}
-			
-			#content {
-				width: 600px;
-				margin: 0 auto;
-				border-bottom: 1px solid #BAA29B;
-			}
-			
-			#header a {
-				display: block;
-				padding: 5px 10px;
-				background-color: #BA2902;
-				color: #FFF;
-				text-decoration: none;
-			}
-			
-			a {
-				color: #666;
-				font-weight:bold;
-			}
-			
-			a:hover {
-				color: #222;
-			}
-			
-			table {
-				width: 100%;
-			}
-			
-			thead tr {
-				background-color: #C9C9C9;
-			}
-			
-			label {
-				display: block;
-				font-weight: bold;
-			}
-			
-			td {
-				padding: 2px 3px;
-			}
-			.even {
-				background-color: #E9E9E9;
-			}
-			
-			.field {
-				margin-bottom: 10px;
-			}
-			
-			#menu {
-				padding: 5px 10px;
-				background-color: #B9B9B9;
-				margin-bottom: 10px;
-			}
-			
-			input, textarea {
-				border: 1px solid #C1C1C1;
-				padding: 5px;
-			}
-			
-			
-		</style>
+		<%= stylesheet_link_tag 'kitsune/global.css' %>
 	</head>
 	<body>
 		<div id='content'>
 			<div id='header'>
-				<a href='/admin/models'>Kitsune</a>
+				<h1><a href='/admin/models'>Kitsune</a></h1>
 			</div>
 			<%= yield %>
 		</div>

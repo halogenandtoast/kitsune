@@ -1,5 +1,7 @@
 <% unless @models.empty? %>
-<ul><% @models.each do |model| %>
-	<li><%= link_to model, url_for(:action => 'show', :model => model.to_s) %></li>
-<% end %></ul>
+<ul>
+	<li><%= link_to 'Page', url_for(:controller => 'admin/kitsune/pages') %></li>
+	<% @models.each do |model| %>
+		<li><%= link_to model, url_for(:action => 'show', :model => model.to_s) %></li>
+	<% end %></ul>
 <% end %>
