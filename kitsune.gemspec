@@ -1,16 +1,15 @@
 --- !ruby/object:Gem::Specification 
 name: kitsune
 version: !ruby/object:Gem::Version 
-  version: 0.0.1
+  version: 0.0.2
 platform: ruby
 authors: 
 - Matthew Mongeau <matt@toastyapps.com>
-- Tom Scott <tubbo@psychedeli.ca>
 autorequire: 
 bindir: bin
 cert_chain: []
 
-date: 2009-09-09 00:00:00 -04:00
+date: 2009-10-23 00:00:00 -04:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -39,40 +38,59 @@ files:
 - app/controllers/admin/kitsune
 - app/controllers/admin/kitsune/models_controller.rb
 - app/controllers/admin/kitsune/pages_controller.rb
+- app/controllers/admin/kitsune/records_controller.rb
+- app/controllers/kitsune_controller.rb
 - app/helpers
 - app/helpers/admin
 - app/helpers/admin/kitsune
-- app/helpers/admin/kitsune/models_helper.rb
+- app/helpers/admin/kitsune/records_helper.rb
 - app/views
 - app/views/admin
 - app/views/admin/kitsune
 - app/views/admin/kitsune/models
 - app/views/admin/kitsune/models/_form.html.erb
-- app/views/admin/kitsune/models/edit.html.erb
 - app/views/admin/kitsune/models/index.html.erb
-- app/views/admin/kitsune/models/new.html.erb
-- app/views/admin/kitsune/models/show.html.erb
-- app/views/admin/pages
-- app/views/admin/pages/index.html.erb
-- app/views/admin/pages/new.html.erb
+- app/views/admin/kitsune/pages
+- app/views/admin/kitsune/pages/_form.html.erb
+- app/views/admin/kitsune/pages/edit.html.erb
+- app/views/admin/kitsune/pages/index.html.erb
+- app/views/admin/kitsune/pages/new.html.erb
+- app/views/admin/kitsune/records
+- app/views/admin/kitsune/records/_form.html.erb
+- app/views/admin/kitsune/records/edit.html.erb
+- app/views/admin/kitsune/records/index.html.erb
+- app/views/admin/kitsune/records/new.html.erb
+- app/views/kitsune
+- app/views/kitsune/show.html.erb
 - app/views/layouts
 - app/views/layouts/admin
 - app/views/layouts/admin/kitsune.html.erb
 - config/kitsune_routes.rb
 - generators/kitsune
 - generators/kitsune/kitsune_generator.rb
+- generators/kitsune/lib
+- generators/kitsune/lib/insert_commands.rb
 - generators/kitsune/templates
+- generators/kitsune/templates/images
+- generators/kitsune/templates/images/bg.jpg
+- generators/kitsune/templates/images/form-bg.gif
+- generators/kitsune/templates/images/grey-btn.png
+- generators/kitsune/templates/images/nicEditorIcons.gif
+- generators/kitsune/templates/javascripts
+- generators/kitsune/templates/javascripts/nicEdit.js
 - generators/kitsune/templates/migrations
 - generators/kitsune/templates/migrations/create_pages.rb
 - generators/kitsune/templates/page.rb
-- generators/kitsune/USAGE
+- generators/kitsune/templates/stylesheets
+- generators/kitsune/templates/stylesheets/global.css
 - lib/kitsune
 - lib/kitsune/active_record.rb
-- lib/kitsune/admin
-- lib/kitsune/admin/builder.rb
-- lib/kitsune/config.rb
+- lib/kitsune/builder.rb
 - lib/kitsune/extensions
 - lib/kitsune/extensions/routes.rb
+- lib/kitsune/faux_column.rb
+- lib/kitsune/form_helper_ext.rb
+- lib/kitsune/inspector.rb
 - lib/kitsune/page.rb
 - lib/kitsune.rb
 - rails/init.rb
