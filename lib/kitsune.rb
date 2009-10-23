@@ -1,45 +1,37 @@
-require 'kitsune/config'
-require 'kitsune/extensions/routes'
 require 'kitsune/active_record'
-require 'kitsune/admin/builder'
+require 'kitsune/extensions/routes'
+require 'kitsune/form_helper_ext'
 
 module Kitsune
-  def self.models
-    Dir.glob(File.join(RAILS_ROOT, 'app', 'models', '*.rb')).map do |file|
-      file.split('/').last.split('.').first.classify
+  autoload :FauxColumn, 'kitsune/faux_column'
+  autoload :Inspector, 'kitsune/inspector'
+  autoload :Page, 'kitsune/page'
+  class << self
+    def version
+      '0.0.1'
     end
-  end
   
-  def self.views(model)
-    model_class = model.is_a?(String) ? model.underscore : model.class.to_s.underscore
-    views = []
-    Dir.glob(File.join(RAILS_ROOT, 'app', 'views', model_class.pluralize, '[^_]*')).map do |file|
-      file.split('/').last.split('.').first
+    def model_paths # abstract this to something else
+      ["#{RAILS_ROOT}/app/models"]
     end
-  end
-  
-  def self.partials(model)
-    model_class = model.is_a?(String) ? model.underscore : model.class.to_s.underscore
-    partials = []
-    Dir.glob(File.join(RAILS_ROOT, 'app', 'views', model_class.pluralize, '_*')).map do |file|
-      file.split('/').last.split('.').first
+    
+    def models_with_admin
+      models.select{|m| m.respond_to?(:kitsune_admin)} # quacks like a duck
     end
-  end
-  
-  def self.associations(model)
-    klass = model.is_a?(String) ? model.classify.constantize : model
-    klass.reflections
-  end
-  
-  class FauxColumn
-    attr_accessor :name, :type
-    def initialize(name, type)
-      @name, @type = name, type
-    end
-    def primary
-      false
+    
+    def models
+      models = []
+      model_paths.each do |path|
+        Dir.glob(path+'/*').each do |file|
+          begin
+            klass = File.basename(file).gsub(/^(.+).rb/, '\1').classify.constantize
+            models << klass if klass.ancestors.include?(::ActiveRecord::Base)
+          rescue Exception => e
+            # not valid
+          end
+        end
+      end
+      models
     end
   end
 end
-
-ActiveRecord::Base.send(:include, Kitsune::ActiveRecord)

@@ -3,6 +3,7 @@ class KitsuneCreatePages < ActiveRecord::Migration
     create_table(:pages) do |t|
       t.string :title
       t.string :url
+      t.text :body
       t.integer :parent_id
     end
   end

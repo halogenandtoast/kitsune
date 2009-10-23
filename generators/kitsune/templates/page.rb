@@ -1,3 +1,3 @@
 class Page < ActiveRecord::Base
-  include Kistune::Page
+  include Kitsune::Page
 end

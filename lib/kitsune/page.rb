@@ -2,12 +2,15 @@ module Kitsune
   module Page
     def self.included(model)
       model.class_eval do
-        no_admin
+        admin do
+          wysiwyg :body
+        end
         
         before_save :update_url
+        belongs_to :page, :foreign_key => "parent_id"
         
         def update_url
-          @url = title
+          write_attribute :url, title
         end
       end
     end

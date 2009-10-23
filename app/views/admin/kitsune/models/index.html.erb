@@ -1,7 +1,3 @@
-<% unless @models.empty? %>
-<ul>
-	<li><%= link_to 'Page', url_for(:controller => 'admin/kitsune/pages') %></li>
-	<% @models.each do |model| %>
-		<li><%= link_to model, url_for(:action => 'show', :model => model.to_s) %></li>
-	<% end %></ul>
+<% @models.each do |model| %>
+<%= link_to model, admin_kitsune_model_records_path(model) %>
 <% end %>

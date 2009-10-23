@@ -1,16 +1,14 @@
 class Admin::Kitsune::PagesController < ApplicationController
-  unloadable
-
+  layout 'admin/kitsune'
+  
+  before_filter :load_page
+  
   def index
     @pages = ::Page.all
   end
   
   def new
     @page = ::Page.new
-  end
-  
-  def show
-    @page = ::Page.find_by_url(params[:url])
   end
   
   def create
@@ -20,5 +18,10 @@ class Admin::Kitsune::PagesController < ApplicationController
     else
       render 'new'
     end
+  end
+  
+  private
+  def load_page
+    @page = Page.find_by_url(params[:id]) if params[:id]
   end
 end
