@@ -36,7 +36,7 @@ module Kitsune
     end
     
     def file(field)
-      add_definition(:file_field, field)
+      add :file_field, field
       multipart
     end
     
@@ -45,39 +45,39 @@ module Kitsune
     end
     
     def select(field, options)
-      add_definition(:select, field, {:options => options})
+      add :select, field, {:options => options}
     end
     
     def display_and_edit(*args)
-      display(*args)
-      edit(*args)
+      display *args
+      edit *args
     end
     
     def display(*fields)
-      set_options_for_fields(:display, fields)
+      set :display, fields
     end
     
     def edit(*fields)
-      set_options_for_fields(:edit, fields)
+      set :edit, fields
     end
     
     def no_edit(*fields)
-      set_options_for_fields(:no_edit, fields)
+      set :no_edit, fields
     end
     
     def method_missing(method, *args, &block)
       if TYPES.include?(method)
-        add_definition(method, *args)
+        add method, *args
       end
     end
     
     private
-    def add_definition(type, field, options = {})
+    def add(type, field, options = {})
       @resource.kitsune_admin[:fields] ||= {}
       @resource.kitsune_admin[:fields][field] = options.merge(:type => type)
     end
     
-    def set_options_for_fields(type, fields)
+    def set(type, fields)
       @resource.kitsune_admin[type] = {} unless @resource.kitsune_admin[type]
       @resource.kitsune_admin[type][:fields] ||= []
       fields.each do |field|

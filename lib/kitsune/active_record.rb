@@ -17,8 +17,8 @@ module Kitsune
     end
   
     def admin &block
-      setup_admin
-      Kitsune::Builder.generate(self, &block)
+      setup_admin unless self.respond_to?(:kitsune_admin)
+      Kitsune::Builder.generate(self, &block) unless self.kitsune_admin[:no_admin]
     end
   
     def no_admin

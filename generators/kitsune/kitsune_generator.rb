@@ -20,7 +20,7 @@ class KitsuneGenerator < Rails::Generator::Base
         m.file "images/#{image}", "public/images/kitsune/#{image}"
       end
       
-      
+      m.readme "README"
     end
   end
 end

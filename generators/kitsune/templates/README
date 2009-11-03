@@ -1,0 +1,18 @@
+*******************************************************************************
+
+ Only two steps remain!
+
+ 1. Add this to environment.rb if it's not there already
+	
+	    config.gem 'will_paginate', :source => 'http://gemcutter.org'
+	
+	  and run 
+	
+	    rake gems:install
+  
+ 2. Please make sure to delete the two default routes:
+   
+      map.connect ':controller/:action/:id'
+      map.connect ':controller/:action/:id.:format'
+  
+*******************************************************************************

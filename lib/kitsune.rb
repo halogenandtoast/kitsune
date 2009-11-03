@@ -8,7 +8,7 @@ module Kitsune
   autoload :Page, 'kitsune/page'
   class << self
     def version
-      '0.0.1'
+      '0.0.2'
     end
   
     def model_paths # abstract this to something else
@@ -16,7 +16,7 @@ module Kitsune
     end
     
     def models_with_admin
-      models.select{|m| m.respond_to?(:kitsune_admin)} # quacks like a duck
+      models.select{|m| m.respond_to?(:kitsune_admin) && !m.kitsune_admin[:no_admin]} # quacks like a duck
     end
     
     def models

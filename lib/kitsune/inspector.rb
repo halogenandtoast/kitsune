@@ -76,6 +76,7 @@ module Kitsune
           when :datetime then :datetime_select
           when :date then :date_select
           when :time then :time_select
+          when :boolean then :check_box
           else :text_field
         end
       end
