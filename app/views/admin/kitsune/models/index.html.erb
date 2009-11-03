@@ -1,3 +1,10 @@
-<% @models.each do |model| %>
-<%= link_to model, admin_kitsune_model_records_path(model) %>
-<% end %>
+<div class='kitsune_left'>
+	<% @models.each do |model| %>
+		<%= link_to model, admin_kitsune_model_records_path(model) %>
+	<% end %>
+</div>
+
+<div class='kitsune_right'>
+	Use the left menu to manage your site
+</div>
+
