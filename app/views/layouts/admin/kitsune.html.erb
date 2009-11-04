@@ -13,7 +13,7 @@
 			<div class='kitsune_container'>
 				<div class='kitsune_left'>
 					<% @models.each do |model| %>
-						<%= link_to model.admin_name, admin_kitsune_model_records_path(model.object_class) %>
+						<div class='kitsune_model_link'><%= link_to model.admin_name, admin_kitsune_model_records_path(model.object_class) %></div>
 					<% end %>
 				</div>
 				<div class='kitsune_right'>
