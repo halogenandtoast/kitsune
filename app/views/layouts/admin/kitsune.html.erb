@@ -10,7 +10,16 @@
 				<h1><a href='/admin/models'>Kitsune</a></h1>
 				<a href='/'>View Site</a>
 			</div>
-			<%= yield %>
+			<div class='kitsune_container'>
+				<div class='kitsune_left'>
+					<% @models.each do |model| %>
+						<%= link_to model.admin_name, admin_kitsune_model_records_path(model.object_class) %>
+					<% end %>
+				</div>
+				<div class='kitsune_right'>
+					<%= yield %>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

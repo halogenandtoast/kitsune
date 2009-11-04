@@ -8,6 +8,14 @@ module Kitsune
       self.instance_eval &block
     end
     
+    def category category
+      @resource.kitsune_admin[:category] = category
+    end
+    
+    def name name
+      @resource.kitsune_admin[:name] = name
+    end
+    
     def no_admin
       @resource.kitsune_admin[:no_admin] = true
     end
@@ -46,6 +54,16 @@ module Kitsune
     
     def select(field, options)
       add :select, field, {:options => options}
+    end
+    
+    def sti(field, options = {})
+      add :sti, field, {:options => options}
+      is_sti field
+    end
+    
+    def is_sti(field)
+      @resource.kitsune_admin[:is_sti] = true
+      @resource.kitsune_admin[:sti_column] = field
     end
     
     def display_and_edit(*args)

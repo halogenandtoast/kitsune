@@ -1,4 +1,4 @@
-class Admin::Kitsune::RecordsController < ApplicationController
+class Admin::Kitsune::RecordsController < Admin::Kitsune::ApplicationController
   layout 'admin/kitsune'
   
   before_filter :load_model
@@ -19,7 +19,12 @@ class Admin::Kitsune::RecordsController < ApplicationController
   end
   
   def create
-    @record = @model.new_record(params[params[:model_id].underscore])
+    if @model.is_sti? && params[params[:model_id].underscore][@model.sti_column].present?
+      sti_model = Kitsune::Inspector.new(params[params[:model_id].underscore].delete(@model.sti_column).constantize)
+      @record = sti_model.new_record(params[params[:model_id].underscore])
+    else
+      @record = @model.new_record(params[params[:model_id].underscore])
+    end
     if @record.save
       flash[:notice] = "Record Saved"
       redirect_to admin_kitsune_model_records_path(params[:model_id])

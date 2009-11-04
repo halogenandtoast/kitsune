@@ -1,7 +1,8 @@
-<div id='menu'>
-	<%= link_to 'Back', admin_kitsune_model_records_path(params[:model_id]) %>
+<div id='kitsune_record_header'>
+	<h2 class='legend'>New <%= params[:model_id] %></h2>
+	<div id='menu'>
+		<%= link_to 'Back', admin_kitsune_model_records_path(params[:model_id]) %>
+	</div>
 </div>
-<div id='body'>
-<h2 class='legend'>New <%= params[:model_id] %></h3>
+
 <%= render 'form' %>
-</div>

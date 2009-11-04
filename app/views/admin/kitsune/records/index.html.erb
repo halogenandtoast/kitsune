@@ -1,9 +1,9 @@
-<div id='menu'>
-	<%= link_to 'Back', admin_kitsune_models_path %>
-	|
-	<%= link_to "New #{params[:id]}", new_admin_kitsune_model_record_path(params[:model_id]) %>
+<div id='kitsune_record_header'>
+	<h2><%= @model.admin_name %></h2>
+	<div id='menu'>
+		<%= link_to "New #{params[:id]}", new_admin_kitsune_model_record_path(params[:model_id]) %>
+	</div>
 </div>
-<div id='body'>
 <% @model.tabs.each do |key, value|%>
 <%= link_to key, value %>
 <% end %>
@@ -33,4 +33,3 @@
 </table>
 
 <%= will_paginate @records %>
-</div>

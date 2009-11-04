@@ -11,7 +11,8 @@ module Kitsune
           :display => {}, 
           :edit => {}, 
           :fields => {}, 
-          :tabs => {}
+          :tabs => {},
+          :is_sti => false
         }
       end
     end

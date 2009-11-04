@@ -1,4 +1,4 @@
-class Admin::Kitsune::PagesController < ApplicationController
+class Admin::Kitsune::PagesController < Admin::Kitsune::ApplicationController
   layout 'admin/kitsune'
   
   before_filter :load_page

@@ -9,12 +9,28 @@ module Kitsune
       @collection_label_methods = %w[to_label display_name full_name name title username login value to_s]
     end
     
+    def admin_name
+      kitsune_admin[:name] || @object.to_s.pluralize
+    end
+    
+    def category
+      kitsune_admin[:category] || nil
+    end
+    
+    def is_sti?
+      kitsune_admin[:is_sti]
+    end
+    
+    def sti_column
+      kitsune_admin[:sti_column]
+    end
+    
     def tabs
       kitsune_admin[:tabs]
     end
     
     def object_class
-      @object.class
+      @object.to_s
     end
     
     def new_record(*args)
@@ -67,7 +83,16 @@ module Kitsune
     
     def form_type(column)
       if kitsune_admin[:fields][column.name.to_sym] && kitsune_admin[:fields][column.name.to_sym][:type]
-        kitsune_admin[:fields][column.name.to_sym][:type]
+        case kitsune_admin[:fields][column.name.to_sym][:type]
+        when :sti
+          if kitsune_admin[:fields][column.name.to_sym][:options] && kitsune_admin[:fields][column.name.to_sym][:options][:classes]
+            :select
+          else
+            :text_field
+          end
+        else
+          kitsune_admin[:fields][column.name.to_sym][:type]
+        end
       elsif column.name =~ /_id$/
         :select
       else
@@ -128,6 +153,8 @@ module Kitsune
         collection = find_association_class(column).all
         name = detect_label(collection)
         [collection.map { |r| [ r.send(name), r.send(id) ] }, {:include_blank => true}]
+      elsif kitsune_admin[:fields][column.name.to_sym] && kitsune_admin[:fields][column.name.to_sym][:type] == :sti && kitsune_admin[:fields][column.name.to_sym][:options] && kitsune_admin[:fields][column.name.to_sym][:options][:classes]
+        [kitsune_admin[:fields][column.name.to_sym][:options][:classes].map {|c| [c.to_s, c.to_s]}, {:include_blank => true}]
       else
         options = {}
         options[:size] = '80x10' if [:text_area, :wysiwyg].include?(form_type(column))
