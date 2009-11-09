@@ -48,6 +48,11 @@ module Kitsune
       multipart
     end
     
+    def image(field)
+      add :file_field, field
+      multipart
+    end
+    
     def multipart(value = true)
       @resource.kitsune_admin[:multipart] = value
     end

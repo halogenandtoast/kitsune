@@ -148,17 +148,22 @@ module Kitsune
     end
     
     def options_for(column)
-      if column.name =~ /_id$/
+      if kitsune_admin[:fields][column.name.to_sym] && kitsune_admin[:fields][column.name.to_sym][:type] == :select
+        options = kitsune_admin[:fields][column.name.to_sym][:options].is_a?(Proc) ? kitsune_admin[:fields][column.name.to_sym][:options].call : kitsune_admin[:fields][column.name.to_sym][:options]
+        [options, {:include_blank => true}]
+      elsif column.name =~ /_id$/
         id = :id
         collection = find_association_class(column).all
         name = detect_label(collection)
         [collection.map { |r| [ r.send(name), r.send(id) ] }, {:include_blank => true}]
       elsif kitsune_admin[:fields][column.name.to_sym] && kitsune_admin[:fields][column.name.to_sym][:type] == :sti && kitsune_admin[:fields][column.name.to_sym][:options] && kitsune_admin[:fields][column.name.to_sym][:options][:classes]
         [kitsune_admin[:fields][column.name.to_sym][:options][:classes].map {|c| [c.to_s, c.to_s]}, {:include_blank => true}]
-      else
+      elsif kitsune_admin[:fields][column.name.to_sym] && kitsune_admin[:fields][column.name.to_sym][:type] == :textarea
         options = {}
         options[:size] = '80x10' if [:text_area, :wysiwyg].include?(form_type(column))
         [options]
+      else
+        [{}]
       end
     end
   end

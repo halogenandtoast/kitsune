@@ -4,6 +4,7 @@ module Kitsune
       model.class_eval do
         admin do
           wysiwyg :body
+          select :layout, Proc.new {Dir.glob(File.join(RAILS_ROOT, 'app', 'views', 'layouts', '*.html.haml')).map{|f| File.basename(f).split('.').first}}
         end
         
         before_save :update_url
