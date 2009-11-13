@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: kitsune
 version: !ruby/object:Gem::Version 
-  version: 0.0.2
+  version: 0.0.3
 platform: ruby
 authors: 
 - Matthew Mongeau <matt@toastyapps.com>
@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-10-23 00:00:00 -04:00
+date: 2009-11-13 00:00:00 -05:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -36,6 +36,7 @@ files:
 - app/controllers
 - app/controllers/admin
 - app/controllers/admin/kitsune
+- app/controllers/admin/kitsune/application_controller.rb
 - app/controllers/admin/kitsune/models_controller.rb
 - app/controllers/admin/kitsune/pages_controller.rb
 - app/controllers/admin/kitsune/records_controller.rb
@@ -75,14 +76,21 @@ files:
 - generators/kitsune/templates/images/bg.jpg
 - generators/kitsune/templates/images/form-bg.gif
 - generators/kitsune/templates/images/grey-btn.png
+- generators/kitsune/templates/images/header-link.png
 - generators/kitsune/templates/images/nicEditorIcons.gif
 - generators/kitsune/templates/javascripts
 - generators/kitsune/templates/javascripts/nicEdit.js
 - generators/kitsune/templates/migrations
 - generators/kitsune/templates/migrations/create_pages.rb
 - generators/kitsune/templates/page.rb
+- generators/kitsune/templates/README
 - generators/kitsune/templates/stylesheets
 - generators/kitsune/templates/stylesheets/global.css
+- generators/kitsune/USAGE
+- generators/kitsune_flat_files
+- generators/kitsune_flat_files/kitsune_flat_files_generator.rb
+- generators/kitsune_flat_files/templates
+- generators/kitsune_flat_files/templates/index.html.erb
 - lib/kitsune
 - lib/kitsune/active_record.rb
 - lib/kitsune/builder.rb
@@ -118,7 +126,7 @@ required_rubygems_version: !ruby/object:Gem::Requirement
 requirements: 
 - mislav-will_paginate
 rubyforge_project: 
-rubygems_version: 1.3.4
+rubygems_version: 1.3.5
 signing_key: 
 specification_version: 3
 summary: Integrated Rails Content Management System.

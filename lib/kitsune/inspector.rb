@@ -82,10 +82,10 @@ module Kitsune
     end
     
     def form_type(column)
-      if kitsune_admin[:fields][column.name.to_sym] && kitsune_admin[:fields][column.name.to_sym][:type]
-        case kitsune_admin[:fields][column.name.to_sym][:type]
+      if type = field_type(column.name)
+        case type
         when :sti
-          if kitsune_admin[:fields][column.name.to_sym][:options] && kitsune_admin[:fields][column.name.to_sym][:options][:classes]
+          if field_options(field) && field[:classes]
             :select
           else
             :text_field
@@ -148,23 +148,39 @@ module Kitsune
     end
     
     def options_for(column)
-      if kitsune_admin[:fields][column.name.to_sym] && kitsune_admin[:fields][column.name.to_sym][:type] == :select
-        options = kitsune_admin[:fields][column.name.to_sym][:options].is_a?(Proc) ? kitsune_admin[:fields][column.name.to_sym][:options].call : kitsune_admin[:fields][column.name.to_sym][:options]
-        [options, {:include_blank => true}]
+      
+      field = column.name
+      
+      if field_type(field) == :select
+        [field_options(field), {:include_blank => true}]
       elsif column.name =~ /_id$/
         id = :id
         collection = find_association_class(column).all
         name = detect_label(collection)
-        [collection.map { |r| [ r.send(name), r.send(id) ] }, {:include_blank => true}]
-      elsif kitsune_admin[:fields][column.name.to_sym] && kitsune_admin[:fields][column.name.to_sym][:type] == :sti && kitsune_admin[:fields][column.name.to_sym][:options] && kitsune_admin[:fields][column.name.to_sym][:options][:classes]
-        [kitsune_admin[:fields][column.name.to_sym][:options][:classes].map {|c| [c.to_s, c.to_s]}, {:include_blank => true}]
-      elsif kitsune_admin[:fields][column.name.to_sym] && kitsune_admin[:fields][column.name.to_sym][:type] == :textarea
-        options = {}
+        [collection.map { |element| [ element.send(name), element.send(id) ] }, {:include_blank => true}]
+      elsif field_type(field) == :sti && (options = field_options(field)) && options[:classes]
+        [options[:classes].map {|element| [element.to_s, element.to_s]}, {:include_blank => true}]
+      else
+        options = field_options(field) || {}
         options[:size] = '80x10' if [:text_area, :wysiwyg].include?(form_type(column))
         [options]
-      else
-        [{}]
       end
+    end
+    
+    private
+    def field_defined(field)
+      !!kitsune_admin[:fields][field.to_sym]
+    end
+
+    def field_type(field)
+      return kitsune_admin[:fields][field.to_sym][:type] if field_defined(field)
+      return nil
+    end
+    
+    def field_options(field)
+      options = kitsune_admin[:fields][field.to_sym][:options] if field_defined(field)
+      return (options.is_a?(Proc) ? options.call : options) if options
+      return nil
     end
   end
 end
