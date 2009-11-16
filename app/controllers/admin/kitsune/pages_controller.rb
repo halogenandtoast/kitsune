@@ -14,9 +14,17 @@ class Admin::Kitsune::PagesController < Admin::Kitsune::ApplicationController
   def create
     @page = ::Page.new(params[:page])
     if @page.save
-      redirect_to admin_kitsune_pages_path
+      redirect_to url_for(:controller => 'admin/kitsune/pages')
     else
       render 'new'
+    end
+  end
+  
+  def update
+    if @page.update_attributes(params[:page])
+      redirect_to url_for(:controller => 'admin/kitsune/pages')
+    else
+      render 'edit'
     end
   end
   

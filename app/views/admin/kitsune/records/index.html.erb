@@ -1,7 +1,7 @@
 <div id='kitsune_record_header'>
 	<h2><%= @model.admin_name %></h2>
 	<div id='menu'>
-		<%= link_to "New #{params[:id]}", new_admin_kitsune_model_record_path(params[:model_id]) %>
+		<%= link_to "New #{params[:id]}", :controller => 'admin/kitsune/records', :action => :new, :model_id => params[:model_id] %>
 	</div>
 </div>
 <% @model.tabs.each do |key, value|%>
@@ -23,9 +23,9 @@
 					<td><%= truncate(sanitize(record.send(column.name).to_s), :length => 20) %></td>
 				<% end %>
 				<td>
-					<%= link_to 'Edit', edit_admin_kitsune_model_record_path(params[:model_id], record.id) %> 
+					<%= link_to 'Edit', :controller => 'admin/kitsune/records', :action => :edit, :model_id => params[:model_id], :id => record.id %>
 					- 
-					<%= link_to 'Delete', admin_kitsune_model_record_path(params[:model_id], record.id), :method => :delete, :confirm => "Are you sure?" %>
+					<%= link_to 'Delete', :controller => 'admin/kitsune/records', :model_id => params[:model_id], :id => record.id, :method => :delete, :confirm => "Are you sure?" %>
 				</td>
 			</tr>
 		<% end %>
