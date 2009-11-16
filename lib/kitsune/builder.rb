@@ -81,7 +81,10 @@ module Kitsune
     end
     
     def edit(*fields)
-      set :edit, fields
+      fields.each do |field|
+        type = @resource.reflections[field.to_sym] ? :reflections : :edit
+        set type, field
+      end
     end
     
     def no_edit(*fields)
@@ -103,7 +106,7 @@ module Kitsune
     def set(type, fields)
       @resource.kitsune_admin[type] = {} unless @resource.kitsune_admin[type]
       @resource.kitsune_admin[type][:fields] ||= []
-      fields.each do |field|
+      [fields].flatten.each do |field|
         unless field.is_a?(Hash)
           @resource.kitsune_admin[type][:fields] << field
         else

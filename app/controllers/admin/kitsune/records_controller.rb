@@ -27,7 +27,7 @@ class Admin::Kitsune::RecordsController < Admin::Kitsune::ApplicationController
     end
     if @record.save
       flash[:notice] = "Record Saved"
-      redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => params[:model_id])
+      redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => @model.class_name)
     else
       flash[:notice] = "Could not save record"
       render 'new'
@@ -35,9 +35,17 @@ class Admin::Kitsune::RecordsController < Admin::Kitsune::ApplicationController
   end
   
   def update
+    
+    if @model.is_sti_child? && params[params[:model_id].underscore][:type]
+      if params[params[:model_id].underscore][:type].to_s != @record.type.to_s
+        @record.type = params[params[:model_id].underscore][:type]
+        @record.save
+      end
+    end
+    
     if @record.update_attributes(params[params[:model_id].underscore])
       flash[:notice] = "Record Saved"
-      redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => params[:model_id])
+      redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => @model.class_name)
     else
       flash[:notice] = "Could not save record"
       render 'edit'
@@ -47,7 +55,7 @@ class Admin::Kitsune::RecordsController < Admin::Kitsune::ApplicationController
   def destroy
     @record.destroy
     flash[:notice] = "Record Deleted"
-    redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => params[:model_id])
+    redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => @model.class_name)
   end
   
   private

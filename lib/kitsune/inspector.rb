@@ -21,6 +21,10 @@ module Kitsune
       kitsune_admin[:is_sti]
     end
     
+    def is_sti_child?
+      @object.ancestors[1] != ::ActiveRecord::Base
+    end
+    
     def sti_column
       kitsune_admin[:sti_column]
     end
@@ -72,6 +76,12 @@ module Kitsune
       end
     end
     
+    def columns_for_reflections
+      kitsune_admin[:reflections][:fields].map do |field|
+        Kitsune::FauxColumn.new(field, :string)
+      end
+    end
+    
     def column_sortable(column)
       # move to column proxy
       kitsune_admin[:sortable] && kitsune_admin[:sortable].include?(column.name.to_sym)
@@ -82,10 +92,11 @@ module Kitsune
     end
     
     def form_type(column)
+      field = column.name
       if type = field_type(column.name)
         case type
         when :sti
-          if field_options(field) && field[:classes]
+          if (options = field_options(field)) && options[:classes]
             :select
           else
             :text_field
@@ -109,7 +120,7 @@ module Kitsune
     
     def detect_label(collection)
       @collection_label_methods.each do |label_name|
-        return label_name if collection.first.respond_to?(label_name)
+        return label_name if [collection].flatten.first.respond_to?(label_name)
       end
       'to_s'
     end
@@ -132,6 +143,16 @@ module Kitsune
             end
           end
         end
+      end
+    end
+    
+    def display_for(record, method, *args, &block)
+      if method.to_s =~ /_id$/
+        associated_record = record.send(method.to_s.gsub(/_id$/, '').to_sym, *args, &block)
+        label_method = detect_label(associated_record)
+        associated_record.send(label_method.to_sym)
+      else
+        record.send(method.to_sym, *args, &block)
       end
     end
     

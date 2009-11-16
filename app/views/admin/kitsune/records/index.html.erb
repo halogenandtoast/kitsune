@@ -20,12 +20,12 @@
 		<% @records.each do |record| %>
 			<tr class="<%= cycle('odd', 'even') %>">
 				<% @model.columns(:display).each do |column| %>
-					<td><%= truncate(sanitize(record.send(column.name).to_s), :length => 20) %></td>
+					<td><%= truncate(sanitize(@model.display_for(record, column.name).to_s), :length => 20) %></td>
 				<% end %>
 				<td>
 					<%= link_to 'Edit', :controller => 'admin/kitsune/records', :action => :edit, :model_id => params[:model_id], :id => record.id %>
 					- 
-					<%= link_to 'Delete', :controller => 'admin/kitsune/records', :model_id => params[:model_id], :id => record.id, :method => :delete, :confirm => "Are you sure?" %>
+					<%= link_to('Delete', url_for(:controller => 'admin/kitsune/records', :model_id => params[:model_id], :id => record.id, :action => :destroy), :method => :delete, :confirm => "Are you sure?") %>
 				</td>
 			</tr>
 		<% end %>
