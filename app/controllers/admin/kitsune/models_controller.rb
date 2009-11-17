@@ -1,4 +1,4 @@
-class Admin::Kitsune::ModelsController < Admin::Kitsune::ApplicationController
+class Admin::Kitsune::ModelsController < Admin::Kitsune::KitsuneController
   layout 'admin/kitsune'
   
   before_filter :load_model
