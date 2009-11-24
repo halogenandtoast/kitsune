@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: kitsune
 version: !ruby/object:Gem::Version 
-  version: 0.0.3
+  version: 0.0.6
 platform: ruby
 authors: 
 - Matthew Mongeau <matt@toastyapps.com>
@@ -9,11 +9,11 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-11-13 00:00:00 -05:00
+date: 2009-11-24 00:00:00 -05:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
-  name: mislav-will_paginate
+  name: will_paginate
   type: :runtime
   version_requirement: 
   version_requirements: !ruby/object:Gem::Requirement 
@@ -37,6 +37,7 @@ files:
 - app/controllers/admin
 - app/controllers/admin/kitsune
 - app/controllers/admin/kitsune/application_controller.rb
+- app/controllers/admin/kitsune/kitsune_controller.rb
 - app/controllers/admin/kitsune/models_controller.rb
 - app/controllers/admin/kitsune/pages_controller.rb
 - app/controllers/admin/kitsune/records_controller.rb
@@ -58,6 +59,7 @@ files:
 - app/views/admin/kitsune/pages/new.html.erb
 - app/views/admin/kitsune/records
 - app/views/admin/kitsune/records/_form.html.erb
+- app/views/admin/kitsune/records/_list.html.erb
 - app/views/admin/kitsune/records/edit.html.erb
 - app/views/admin/kitsune/records/index.html.erb
 - app/views/admin/kitsune/records/new.html.erb
@@ -124,7 +126,7 @@ required_rubygems_version: !ruby/object:Gem::Requirement
       version: "0"
   version: 
 requirements: 
-- mislav-will_paginate
+- will_paginate
 rubyforge_project: 
 rubygems_version: 1.3.5
 signing_key: 

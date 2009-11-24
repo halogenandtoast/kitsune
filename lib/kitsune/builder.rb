@@ -49,7 +49,7 @@ module Kitsune
     end
     
     def image(field)
-      add :file_field, field
+      add :image_field, field
       multipart
     end
     

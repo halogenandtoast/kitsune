@@ -16,4 +16,12 @@ module Admin::Kitsune::RecordsHelper
       column.name.to_s.titleize
     end
   end
+
+	def additional_content_for(model, record, column)
+		if model.field_type(column.name) == :file_field && (file = record.send(column.name)).present?
+			"<p><strong>Current File</strong>: " + link_to(file.to_s, file.to_s) + "</p>"
+		elsif model.field_type(column.name) == :image_field && (file = record.send(column.name)).present?
+			"<p><strong>Current File</strong>: " + image_tag(file.to_s) + "</p>"
+		end
+	end
 end

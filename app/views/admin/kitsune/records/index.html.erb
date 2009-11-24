@@ -7,29 +7,5 @@
 <% @model.tabs.each do |key, value|%>
 <%= link_to key, value %>
 <% end %>
-<table>
-	<thead>
-		<tr>
-			<% @model.columns(:display).each do |column| %>
-				<th><%= sort_link_to(@model, column) %></th>
-			<% end %>
-			<th>Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @records.each do |record| %>
-			<tr class="<%= cycle('odd', 'even') %>">
-				<% @model.columns(:display).each do |column| %>
-					<td><%= truncate(sanitize(@model.display_for(record, column.name).to_s), :length => 20) %></td>
-				<% end %>
-				<td>
-					<%= link_to 'Edit', :controller => 'admin/kitsune/records', :action => :edit, :model_id => params[:model_id], :id => record.id %>
-					- 
-					<%= link_to('Delete', url_for(:controller => 'admin/kitsune/records', :model_id => params[:model_id], :id => record.id, :action => :destroy), :method => :delete, :confirm => "Are you sure?") %>
-				</td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
-
+<%= render :partial => 'list', :locals => {:model => @model, :records => @records, :parent => nil } %>
 <%= will_paginate @records %>

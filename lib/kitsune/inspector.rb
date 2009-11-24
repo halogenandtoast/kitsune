@@ -77,9 +77,13 @@ module Kitsune
     end
     
     def columns_for_reflections
-      kitsune_admin[:reflections][:fields].map do |field|
-        Kitsune::FauxColumn.new(field, :string)
-      end
+			if kitsune_admin[:reflections] && kitsune_admin[:reflections][:fields]
+				kitsune_admin[:reflections][:fields].map do |field|
+					Kitsune::FauxColumn.new(field, :string)
+				end
+			else
+				[]
+			end
     end
     
     def column_sortable(column)
@@ -101,6 +105,8 @@ module Kitsune
           else
             :text_field
           end
+				when :image_field
+					:file_field
         else
           kitsune_admin[:fields][column.name.to_sym][:type]
         end
@@ -188,14 +194,14 @@ module Kitsune
       end
     end
     
-    private
-    def field_defined(field)
-      !!kitsune_admin[:fields][field.to_sym]
-    end
-
     def field_type(field)
       return kitsune_admin[:fields][field.to_sym][:type] if field_defined(field)
       return nil
+    end
+
+    private
+    def field_defined(field)
+      !!kitsune_admin[:fields][field.to_sym]
     end
     
     def field_options(field)

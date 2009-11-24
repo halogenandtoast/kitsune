@@ -3,8 +3,15 @@
 <%= form.error_messages %>
 <% @model.columns(:edit).each do |column| %>
 	<div class='field'>
-		<%= form.label column.name %>
-		<%= form.send(@model.form_type(column), column.name, *@model.options_for(column)) %>
+		<% unless params[column.name] %>
+			<%= form.label column.name %>
+			<%= form.send(@model.form_type(column), column.name, *@model.options_for(column)) %>
+			<%= additional_content_for(@model, @record, column) %>
+		<% else %>
+			<%= form.hidden_field column.name, :value => params[column.name] %>
+			<%= hidden_field_tag :redirect, column.name %>
+			<%= hidden_field_tag :redirect_id, params[column.name] %>
+		<% end %>
 	</div>
 <% end %>
 <div class="submit_button">

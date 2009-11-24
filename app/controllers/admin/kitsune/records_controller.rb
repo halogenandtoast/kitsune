@@ -27,7 +27,13 @@ class Admin::Kitsune::RecordsController < Admin::Kitsune::KitsuneController
     end
     if @record.save
       flash[:notice] = "Record Saved"
-      redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => @model.class_name)
+			if params[:redirect]
+				klass = params[:redirect].gsub(/_id$/, '').classify.constantize
+				record = klass.find(params[:redirect_id])
+				redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => klass.to_s, :id => params[:redirect_id], :action => :edit)
+			else
+				redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => @model.class_name)
+			end
     else
       flash[:notice] = "Could not save record"
       render 'new'
@@ -45,7 +51,13 @@ class Admin::Kitsune::RecordsController < Admin::Kitsune::KitsuneController
     
     if @record.update_attributes(params[params[:model_id].underscore])
       flash[:notice] = "Record Saved"
-      redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => @model.class_name)
+			if params[:redirect]
+				klass = params[:redirect].gsub(/_id$/, '').classify.constantize
+				record = klass.find(params[:redirect_id])
+				redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => klass.to_s, :id => params[:redirect_id], :action => :edit)
+			else
+				redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => @model.class_name)
+			end
     else
       flash[:notice] = "Could not save record"
       render 'edit'
@@ -55,7 +67,13 @@ class Admin::Kitsune::RecordsController < Admin::Kitsune::KitsuneController
   def destroy
     @record.destroy
     flash[:notice] = "Record Deleted"
-    redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => @model.class_name)
+		if params[:redirect]
+			klass = params[:redirect].gsub(/_id$/, '').classify.constantize
+			record = klass.find(params[:redirect_id])
+			redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => klass.to_s, :id => params[:redirect_id], :action => :edit)
+		else
+			redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => @model.class_name)
+		end
   end
   
   private
