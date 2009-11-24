@@ -16,6 +16,10 @@ module Kitsune
     def category
       kitsune_admin[:category] || nil
     end
+
+		def disabled?(type)
+			kitsune_admin[:disabled].include?(type.to_sym)
+		end
     
     def is_sti?
       kitsune_admin[:is_sti]

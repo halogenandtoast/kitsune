@@ -1,8 +1,10 @@
 <div id='kitsune_record_header'>
 	<h2><%= @model.admin_name %></h2>
-	<div id='menu'>
-		<%= link_to "New #{params[:id]}", :controller => 'admin/kitsune/records', :action => :new, :model_id => params[:model_id] %>
-	</div>
+	<% unless @model.disabled?(:new) %>
+		<div id='menu'>
+			<%= link_to "New #{params[:id]}", :controller => 'admin/kitsune/records', :action => :new, :model_id => params[:model_id] %>
+		</div>
+	<% end %>
 </div>
 <% @model.tabs.each do |key, value|%>
 <%= link_to key, value %>

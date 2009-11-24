@@ -16,6 +16,10 @@ module Kitsune
       @resource.kitsune_admin[:name] = name
     end
     
+		def no_menu
+			no_admin
+		end
+
     def no_admin
       @resource.kitsune_admin[:no_admin] = true
     end
@@ -35,6 +39,12 @@ module Kitsune
     def columns(type = nil)
       @resource.columns
     end
+
+		def disable(*types)
+			types.each do |type|
+				@resource.kitsune_admin[:disabled] << type.to_sym
+			end
+		end
     
     def sortable(*fields)
       @resource.kitsune_admin[:sortable] ||= []
