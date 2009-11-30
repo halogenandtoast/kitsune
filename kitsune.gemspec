@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: kitsune
 version: !ruby/object:Gem::Version 
-  version: 0.0.7
+  version: 0.0.8
 platform: ruby
 authors: 
 - Matthew Mongeau <matt@toastyapps.com>
@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-11-24 00:00:00 -05:00
+date: 2009-11-30 00:00:00 -05:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
