@@ -8,7 +8,7 @@ module Kitsune
   autoload :Page, 'kitsune/page'
   class << self
     def version
-      '0.0.9'
+      '0.0.10'
     end
   
     def model_paths # abstract this to something else
