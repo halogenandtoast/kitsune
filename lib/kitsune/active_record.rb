@@ -10,9 +10,11 @@ module Kitsune
           :multipart => false, 
           :display => {}, 
           :edit => {}, 
+          :reflections => {},
           :fields => {}, 
           :tabs => {},
-          :is_sti => false
+          :is_sti => false,
+					:disabled => []
         }
       end
     end

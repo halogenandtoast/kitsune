@@ -16,6 +16,10 @@ module Kitsune
       @resource.kitsune_admin[:name] = name
     end
     
+		def no_menu
+			no_admin
+		end
+
     def no_admin
       @resource.kitsune_admin[:no_admin] = true
     end
@@ -35,6 +39,12 @@ module Kitsune
     def columns(type = nil)
       @resource.columns
     end
+
+		def disable(*types)
+			types.each do |type|
+				@resource.kitsune_admin[:disabled] << type.to_sym
+			end
+		end
     
     def sortable(*fields)
       @resource.kitsune_admin[:sortable] ||= []
@@ -49,7 +59,7 @@ module Kitsune
     end
     
     def image(field)
-      add :file_field, field
+      add :image_field, field
       multipart
     end
     
@@ -81,7 +91,10 @@ module Kitsune
     end
     
     def edit(*fields)
-      set :edit, fields
+      fields.each do |field|
+        type = @resource.reflections[field.to_sym] ? :reflections : :edit
+        set type, field
+      end
     end
     
     def no_edit(*fields)
@@ -103,7 +116,7 @@ module Kitsune
     def set(type, fields)
       @resource.kitsune_admin[type] = {} unless @resource.kitsune_admin[type]
       @resource.kitsune_admin[type][:fields] ||= []
-      fields.each do |field|
+      [fields].flatten.each do |field|
         unless field.is_a?(Hash)
           @resource.kitsune_admin[type][:fields] << field
         else

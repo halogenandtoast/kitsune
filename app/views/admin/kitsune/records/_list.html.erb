@@ -1,0 +1,38 @@
+<table>
+	<thead>
+		<tr>
+			<% model.columns(:display).each do |column| %>
+				<th><%= sort_link_to(model, column) %></th>
+			<% end %>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% records.each do |record| %>
+			<tr class="<%= cycle('odd', 'even') %>">
+				<% model.columns(:display).each do |column| %>
+					<td><%= truncate(sanitize(model.display_for(record, column.name).to_s), :length => 20) %></td>
+				<% end %>
+				<td>
+					<% unless model.disabled?(:edit) %>
+						<% if parent %>
+							<%= link_to 'Edit', :controller => 'admin/kitsune/records', :action => :edit, :model_id => model.object_class, :id => record.id, (parent.class.to_s.underscore+'_id').to_sym => parent.id %>
+						<% else %>
+							<%= link_to 'Edit', :controller => 'admin/kitsune/records', :action => :edit, :model_id => model.object_class, :id => record.id %>
+						<% end %>
+					<% end %>
+					<% unless model.disabled?(:edit) || model.disabled?(:delete) %>
+						- 
+					<% end %>
+					<% unless model.disabled?(:delete) %>
+						<% if parent %>
+							<%= link_to('Delete', url_for(:controller => 'admin/kitsune/records', :model_id => model.object_class, :id => record.id, :action => :destroy, :redirect => (parent.class.to_s.underscore+'_id'), :redirect_id => parent.id), :method => :delete, :confirm => "Are you sure?") %>
+						<% else %>
+							<%= link_to('Delete', url_for(:controller => 'admin/kitsune/records', :model_id => model.object_class, :id => record.id, :action => :destroy), :method => :delete, :confirm => "Are you sure?") %>
+						<% end %>
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -1,5 +1,5 @@
 class KitsuneController < ApplicationController
   def show 
-    @page = ::Page.find_by_url(params[:url].join('/'))
+    @page = ::Page.find_by_url([params[:url]].flatten.join('/'))
   end
 end

@@ -16,9 +16,17 @@ module Kitsune
     def category
       kitsune_admin[:category] || nil
     end
+
+		def disabled?(type)
+			kitsune_admin[:disabled].include?(type.to_sym)
+		end
     
     def is_sti?
       kitsune_admin[:is_sti]
+    end
+    
+    def is_sti_child?
+      @object.ancestors[1] != ::ActiveRecord::Base
     end
     
     def sti_column
@@ -72,6 +80,16 @@ module Kitsune
       end
     end
     
+    def columns_for_reflections
+			if kitsune_admin[:reflections] && kitsune_admin[:reflections][:fields]
+				kitsune_admin[:reflections][:fields].map do |field|
+					Kitsune::FauxColumn.new(field, :string)
+				end
+			else
+				[]
+			end
+    end
+    
     def column_sortable(column)
       # move to column proxy
       kitsune_admin[:sortable] && kitsune_admin[:sortable].include?(column.name.to_sym)
@@ -82,14 +100,17 @@ module Kitsune
     end
     
     def form_type(column)
+      field = column.name
       if type = field_type(column.name)
         case type
         when :sti
-          if field_options(field) && field[:classes]
+          if (options = field_options(field)) && options[:classes]
             :select
           else
             :text_field
           end
+				when :image_field
+					:file_field
         else
           kitsune_admin[:fields][column.name.to_sym][:type]
         end
@@ -109,7 +130,7 @@ module Kitsune
     
     def detect_label(collection)
       @collection_label_methods.each do |label_name|
-        return label_name if collection.first.respond_to?(label_name)
+        return label_name if [collection].flatten.first.respond_to?(label_name)
       end
       'to_s'
     end
@@ -132,6 +153,16 @@ module Kitsune
             end
           end
         end
+      end
+    end
+    
+    def display_for(record, method, *args, &block)
+      if method.to_s =~ /_id$/
+        associated_record = record.send(method.to_s.gsub(/_id$/, '').to_sym, *args, &block)
+        label_method = detect_label(associated_record)
+        associated_record.send(label_method.to_sym)
+      else
+        record.send(method.to_sym, *args, &block)
       end
     end
     
@@ -167,14 +198,14 @@ module Kitsune
       end
     end
     
-    private
-    def field_defined(field)
-      !!kitsune_admin[:fields][field.to_sym]
-    end
-
     def field_type(field)
       return kitsune_admin[:fields][field.to_sym][:type] if field_defined(field)
       return nil
+    end
+
+    private
+    def field_defined(field)
+      !!kitsune_admin[:fields][field.to_sym]
     end
     
     def field_options(field)

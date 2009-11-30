@@ -1,35 +1,13 @@
 <div id='kitsune_record_header'>
 	<h2><%= @model.admin_name %></h2>
-	<div id='menu'>
-		<%= link_to "New #{params[:id]}", new_admin_kitsune_model_record_path(params[:model_id]) %>
-	</div>
+	<% unless @model.disabled?(:new) %>
+		<div id='menu'>
+			<%= link_to "New #{params[:id]}", :controller => 'admin/kitsune/records', :action => :new, :model_id => params[:model_id] %>
+		</div>
+	<% end %>
 </div>
 <% @model.tabs.each do |key, value|%>
 <%= link_to key, value %>
 <% end %>
-<table>
-	<thead>
-		<tr>
-			<% @model.columns(:display).each do |column| %>
-				<th><%= sort_link_to(@model, column) %></th>
-			<% end %>
-			<th>Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @records.each do |record| %>
-			<tr class="<%= cycle('odd', 'even') %>">
-				<% @model.columns(:display).each do |column| %>
-					<td><%= truncate(sanitize(record.send(column.name).to_s), :length => 20) %></td>
-				<% end %>
-				<td>
-					<%= link_to 'Edit', edit_admin_kitsune_model_record_path(params[:model_id], record.id) %> 
-					- 
-					<%= link_to 'Delete', admin_kitsune_model_record_path(params[:model_id], record.id), :method => :delete, :confirm => "Are you sure?" %>
-				</td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
-
+<%= render :partial => 'list', :locals => {:model => @model, :records => @records, :parent => nil } %>
 <%= will_paginate @records %>

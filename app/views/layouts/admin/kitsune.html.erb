@@ -18,12 +18,12 @@
 								<div class='kitsune_category'>
 									<h3><%= key %></h3>
 									<% value.each do |inner_model| %>
-										<div class='kitsune_inner_model_link'><%= link_to inner_model.admin_name, admin_kitsune_model_records_path(inner_model.object_class) %></div>
+										<div class='kitsune_inner_model_link'><%= link_to inner_model.admin_name, :controller => 'admin/kitsune/records', :model_id => inner_model.object_class %></div>
 									<% end %>
 								</div>
 							<% end %>
 						<% else %>
-							<div class='kitsune_model_link'><%= link_to model.admin_name, admin_kitsune_model_records_path(model.object_class) %></div>
+							<div class='kitsune_model_link'><%= link_to model.admin_name, :controller => 'admin/kitsune/records', :model_id => model.object_class %></div>
 						<% end %>
 					<% end %>
 				</div>
