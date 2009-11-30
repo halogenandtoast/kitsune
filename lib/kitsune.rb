@@ -12,7 +12,15 @@ module Kitsune
     end
   
     def model_paths # abstract this to something else
-      ["#{RAILS_ROOT}/app/models"]
+      @models_paths ||= ["#{RAILS_ROOT}/app/models"]
+    end
+    
+    def model_paths=(paths)
+      @model_paths = paths
+    end
+    
+    def model_paths<<(path)
+      @model_paths << path
     end
     
     def models_with_admin
