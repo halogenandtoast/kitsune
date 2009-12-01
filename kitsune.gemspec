@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: kitsune
 version: !ruby/object:Gem::Version 
-  version: 0.0.11
+  version: 0.0.12
 platform: ruby
 authors: 
 - Matthew Mongeau <matt@toastyapps.com>
@@ -88,6 +88,7 @@ files:
 - generators/kitsune/templates/README
 - generators/kitsune/templates/stylesheets
 - generators/kitsune/templates/stylesheets/global.css
+- generators/kitsune/templates/stylesheets/ie.css
 - generators/kitsune/USAGE
 - generators/kitsune_flat_files
 - generators/kitsune_flat_files/kitsune_flat_files_generator.rb
