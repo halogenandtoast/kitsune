@@ -1,3 +1,15 @@
 .kitsune_right {
   float: right;
 }
+
+input {
+  height: 2.5em	
+}
+button {
+  height: 34px;
+}
+button.submitBtn span {
+  height: 34px;
+  display: block
+}
+
