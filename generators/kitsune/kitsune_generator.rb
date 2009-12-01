@@ -15,6 +15,7 @@ class KitsuneGenerator < Rails::Generator::Base
       m.file "javascripts/nicEdit.js", "public/javascripts/kitsune/nicEdit.js"
       m.directory "public/stylesheets/kitsune/"
       m.file "stylesheets/global.css", "public/stylesheets/kitsune/global.css"
+      m.file "stylesheets/ie.css", "public/stylesheets/kitsune/ie.css"
       m.directory "public/images/kitsune/"
       %w[bg.jpg form-bg.gif header-link.png grey-btn.png nicEditorIcons.gif].each do |image|
         m.file "images/#{image}", "public/images/kitsune/#{image}"
