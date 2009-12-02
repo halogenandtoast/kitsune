@@ -22,20 +22,21 @@
 				</div>
 				<div class='kitsune_left'>
           <div class='wrapper'>
+            <ul>
 					  <% @models.each do |model| %>
   						<% if model.is_a? Hash %>
   							<% model.each do |key, value| %>
-  								<div class='kitsune_category'>
-  									<h3><%= key %></h3>
+  								<li class='kitsune_category'><%= key %>
   									<% value.each do |inner_model| %>
-  										<div class='kitsune_inner_model_link'><%= link_to inner_model.admin_name, :controller => 'admin/kitsune/records', :model_id => inner_model.object_class %></div>
+  										<li class='kitsune_inner_model_link'><%= link_to inner_model.admin_name, :controller => 'admin/kitsune/records', :model_id => inner_model.object_class %></li>
   									<% end %>
-  								</div>
+  								</li>
   							<% end %>
   						<% else %>
-  							<div class='kitsune_model_link'><%= link_to model.admin_name, :controller => 'admin/kitsune/records', :model_id => model.object_class %></div>
+  							<li class='kitsune_model_link'><%= link_to model.admin_name, :controller => 'admin/kitsune/records', :model_id => model.object_class %></li>
   						<% end %>
   					<% end %>
+  					</ul>
 					</div>
 				</div>
 			</div>

@@ -334,9 +334,11 @@ button.submitBtn:hover {
 			border: 1px solid #ccc;
 			padding: 0 15px 15px;
 		}
+			.kitsune_right p {
+				margin:1em 0;
+			}
 
 #kitsune_record_header {
-	float:left;
 	position:relative;
 	width: 100%;
 	margin-bottom: 15px;
