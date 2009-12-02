@@ -1,183 +1,64 @@
-/* ----- RESET ----- */
+/* -------RESET------- */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
+del, dfn, font, img, ins, kbd, q, s, samp,
+small, strike, sub, sup, tt, var,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-size: 100.01%;
-	vertical-align: baseline;
-	background: transparent;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
 }
+
 body {
-	line-height: 1;
+  color: black;
+  background: white;
 }
+
+a {
+	color:#666;
+  text-decoration: none;
+}
+
 ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
+  list-style: none;
 }
 
-/* remember to define focus styles! */
-:focus {
-	outline: 0;
-}
-
-/* remember to highlight inserts somehow! */
-ins {
-	text-decoration: none;
-}
-del {
-	text-decoration: line-through;
-}
-
-/* tables still need 'cellspacing="0"' in the markup */
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
-blockquote, q
-{
-	quotes: none;
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
 }
 
-/*
-Safari doesn't support the quotes attribute, so we do this instead.
-*/
-blockquote:before, blockquote:after, q:before, q:after
-{
-	/*
-	CSS 2; used to remove quotes in case "none" fails below.
-	*/
-	content: "";
-	/*
-	CSS 2.1; will remove quotes if supported, and override the above.
-	User-agents that don't understand "none" should ignore it, and
-	keep the above value. This is here for future compatibility,
-	though I'm not 100% convinced that it's a good idea...
-	*/
-	content: none;
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
 }
 
-textarea { overflow: auto; }
-input { border: 0px solid white; margin: 0;  padding: 0; }
+blockquote, q {
+  quotes: "" "";
+}
 
 
-
+/* -------COMMON------- */
 body {
-	padding: 0 0;
-	width: 100%;
-	margin: 0 auto;
-	background: #B0DDE2 url(/images/kitsune/bg.jpg) 0 0 repeat-x;
+	background-color: #eee;
 	color: #000;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.3em; 
-}
-
-/* -------HEADER------- */
-
-#header {
-	width: 100%;
-	height: 38px;
-	
-}
-
-#header h1 {
-	float: left;
-	padding-top: 8px;
-	margin-left: 15px;
-}
-
-#header > a {
-	height: 38px;
-	background: url(/images/kitsune/header-link.png) top left no-repeat;
-	width: 90px;
-	float: right;
-	margin-right: 15px;
-	color: #CCC;
-	font-size: 0.8em;
-	line-height: 38px;
-	text-align: center;
-	text-decoration:none;
-}
-
-#header > a:hover {
-	color: #FFF;
-}
-
-#header h1 a {
-	text-decoration: none;
-	color: #fff;
-}
-
-.kitsune_container {
-	width: 100%;
-	clear: both;
-}
-
-.kitsune_left {
-	background: #FFF;
-	border: 1px solid #CCC;
-	padding: 15px;
-	float: left;
-	width: 240px;
-	margin: 20px 0 0 20px;
-}
-
-.kitsune_right_container {
-	float: right;
-	width: 100%;
-	margin: 20px 0 0 -310px;
-}
-
-.kitsune_right {
-	background: #FFF;
-	border: 1px solid #CCC;
-	padding: 15px;
-	margin: 0 20px 0 310px;
-}
-
-#kitsune_record_header {
-	float:left;
-	width: 100%;
-	margin-bottom: 15px;
-}
-
-#kitsune_record_header h2 {
-	float:left;
-	width: 45%;
-}
-
-#kitsune_record_header #menu {
-	float: right;
-}
-
-
-
-/* ------BODY---------- */
-
-#body {
-	width: 84%;
-	padding: 30px 3% 50px 3%;
-	margin: 40px 5% 10px 5%;
-	background-color: #fff;
-	
-}
-
-
-/* ----- HEADINGS ----- */
-h1, h2, h3, h4, h5 {
-		
+  font-size: 14px;
+  line-height: 1.3em; 
 }
 
 h1 { 
@@ -185,7 +66,7 @@ h1 {
 }
 h2 {
 	font-size: 2em;
- }
+}
 h3 {
 	font-size: 1.5em;
 }
@@ -196,60 +77,18 @@ h5 {
 	font-size: 1em;
 }
 
-/* ----- PARAGRAPHS ----- */
 p {
 	font-size: 1em;
 }
 
-/* ----- LISTS ----- */
-
-li {
-}
-li p {
-}
-ol {
-}
-ul {
-}
-ol li {
-}
-ul li {
-}
-
-/* ----- IMAGES ----- */
-
-img {
-}
-img a {
-}
-img a:hover {
-}
-
-/* ----- LINKS ----- */
-
-a {
-}
-a:hover {
-}
-a:visited, a:active, a:focus {
-}
-a:visited {
-}
-a:active {
-}
-a:focus {
-}
-
-/* ----- FORMS ----- */
 
 form {
 }
 fieldset {
-	background: #F6F6F6 url(/images/kitsune/form-bg.gif) bottom left repeat-x;;
+	background: #F6F6F6;
 	border: 1px solid #eee;
-	padding: 30px 40px 15px 20px;
+	padding: 30px 0 0 0;
 }
-
 h2.legend {
 	width: 100%;
 	border-bottom: 1px solid #eee;
@@ -258,7 +97,6 @@ h2.legend {
 	margin-bottom: 10px;
 	color: #555;
 }
-
 label {
 	font-weight: bold;
 	font-size: 1em;
@@ -266,50 +104,73 @@ label {
 	text-transform: ;
 	color: #aaa;
 }
-input {
-	
-}
-textarea {
-}
 input, textarea {
 	font-family: "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 	font-size: .9em;
 	border: 1px solid #ccc;
 	padding: 5px;
 }
-
 input:focus, textarea:focus {
 	border: 1px solid #e1cd30;
 	background-color: #fbffeb;
 }
-
-
-
 select {
 	font-family: "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 	font-size: .9em;
+}
+
+fieldset {
+	clear: both;
+}
+
+fieldset fieldset legend {
+	padding: 0 0 1.5em; font-size: 1em;
+}
+* html legend {
+	margin-left: -7px; /* ie6 */
+}
+*+html legend {
+	margin-left: -7px; /* ie7 */
+}
+
+form .field, form .buttons, form .submit_button {
+	clear: both;
+	margin: 0 0 1.5em;
+	padding:0 20px;
+}
+	form .field label {
+		display: block;
+	}
+form ul.fields {
+	margin: 0 0 1.5em; 
+	padding: 0;
+}
+	form ul.fields li {
+		list-style-type: none; 
+		margin: 0;
+	}
+	form ul.inline li, form ul.inline label {
+		display: inline;
+	}
+form ul.inline {
 	
 }
-optgroup {
+	form ul.inline li {
+		padding: 0 .75em 0 0;
+	}
+form .submit_button {
+	background-color:#eee;
+	border-top:1px solid #ddd;
+	margin:0;
+	padding:15px 20px;
 }
-option {
+
+input.radio, input.checkbox {
+	vertical-align: top;
 }
-
-fieldset {clear: both;}
-
-fieldset fieldset legend {padding: 0 0 1.5em; font-size: 1em;}
-* html legend {margin-left: -7px;} /* ie6 */
-*+html legend {margin-left: -7px;} /* ie7 */
-
-form .field, form .buttons {clear: both; margin: 0 0 1.5em;}
-form .field label {display: block;}
-form ul.fields {margin: 0 0 1.5em; padding: 0;}
-form ul.fields li {list-style-type: none; margin: 0;}
-form ul.inline li, form ul.inline label {display: inline;}
-form ul.inline li {padding: 0 .75em 0 0;}
-
-input.radio, input.checkbox {vertical-align: top;}
-label, button, input.submit, input.image {cursor: pointer;}
+label, button, input.submit, input.image {
+	cursor: pointer;
+}
 input.submit { 
 	font-family: "Helvetica Neue", Arial, sans-serif;
 	font-weight: bold;
@@ -318,7 +179,7 @@ input.submit {
 	color: #fff; 
 	border: none;
 	padding: 4px 20px;
-	}
+}
 * html input.radio, * html input.checkbox {vertical-align: middle;} /* ie6 */
 *+html input.radio, *+html input.checkbox {vertical-align: middle;} /* ie7 */
 
@@ -337,8 +198,6 @@ table {
 	width: 100%;
 	padding: 0;
 	background: #fff;
-
-	
 }
 
 caption {
@@ -350,10 +209,9 @@ caption {
 th {
 	color: #4f6b72;
 	border-bottom: 1px solid #ddd;
-
 	text-align: left;
 	padding: 6px 6px 6px 12px;
-	background: #fff; /*url(/images/kitsune/bg_header.jpg) no-repeat;*/
+	background: #fff;
 	color: #555;
 }
 
@@ -372,14 +230,10 @@ td {
 	font-size: .9em;
 }
 
-
 tr.alt, td.alt {
 	background: #F5FAFA;
 	color: #797268;
 }
-
-
-
 
 
 /* BUTTON STYLES */		
@@ -390,8 +244,6 @@ button {
 	cursor: pointer;
 	overflow: visible; /* removes extra side padding in IE */
 	margin: 0 0;
-
-	
 }
 
 button::-moz-focus-inner {
@@ -414,31 +266,128 @@ button span {
 
 /* OPTIONAL BUTTON STYLES */		
 button.submitBtn { 
-	padding: 0 25px 0 0; 
-	margin-right:5px; 
-	font-size:1.1em; 
-	text-align: center; 
-	background: transparent url(/images/kitsune/grey-btn.png) no-repeat right -108px;
-	font-family: "Helvetica Neue";
-	font-weight: bold;
-	text-shadow:0 1px 0 #FFFFFF;
-	color: #000	;
-	font-size: 18px; 
+	background: transparent url('/images/kitsune/grey-btn.png') no-repeat left top;
+	color: #000;
+	display:block;
+	height:38px;
+	text-indent:-9999em;
+	width:92px;
 }
-	
-button.submitBtn span {
-	padding: 6px 0 0 25px; 
-	height:28px; 
-	background: transparent url(/images/kitsune/grey-btn.png) no-repeat left top; 
-
-}
-	
-button.submitBtn:active, button.submitBtnHover { /* the redundant class is used to apply the hover state with a script */
-	background-position: right -162px; 
-}
-	
-button.submitBtn:active span, button.submitBtnHover span {
-	background-position: 0 -54px;
+button.submitBtn:hover {
+	background-position:left bottom;
 }
 
+#header {
+	background:url('/images/kitsune/header-bg.gif') repeat-x left top;
+	height: 38px;
+	width: 100%;
+}
+	#header a.view {
+		background: url('/images/kitsune/header-link.png') top left no-repeat;
+		display: block;
+		float: right;
+		height: 27px;
+		margin: 5px 15px 0 0;
+		text-indent: -9999em;
+		width: 92px;
+	}
+	#header a.view:hover {
+		color: #FFF;
+	}
+	#header h1 {
+		float: left;
+		padding-top: 8px;
+		margin-left: 15px;
+	}
+		#header h1 a {
+			text-decoration: none;
+			color: #fff;
+		}
 
+.kitsune_container {
+	background:url('/images/kitsune/content-bg.gif') repeat-x left top;
+	padding-top: 20px;
+	position: relative;
+	width: 100%;
+}
+	.kitsune_left {
+		background:url('/images/kitsune/box-shadow.png') no-repeat right bottom;
+		left: 20px;
+		padding: 0 4px 4px 0;
+		position: absolute;
+		top: 20px;
+		width: 275px;
+	}
+		.kitsune_left .wrapper {
+			background:#fff;
+			border: 1px solid #ccc;
+			padding: 15px;
+		}
+
+	.kitsune_right_container {
+		background:url('/images/kitsune/box-shadow.png') no-repeat right bottom;
+		margin: 0 20px 0 310px;
+		padding: 0 4px 4px 0;
+	}
+		.kitsune_right {
+			background: #fff;
+			border: 1px solid #ccc;
+			padding: 0 15px 15px;
+		}
+
+#kitsune_record_header {
+	float:left;
+	position:relative;
+	width: 100%;
+	margin-bottom: 15px;
+}
+	#kitsune_record_header h2 {
+		padding-top:15px;
+	}
+	#kitsune_record_header #menu {
+		position:absolute;
+		right:0;
+		text-transform:lowercase;
+		top:15px;
+	}
+		#kitsune_record_header #menu a {
+			display: block;
+			line-height:1;
+			text-align:right;
+			width: 51px;
+		}
+		#kitsune_record_header #menu.with_form a {
+			background:url('/images/kitsune/back-arrow.gif') no-repeat left 100px;
+		}
+		#kitsune_record_header #menu a:hover {
+			background-position: left 5px;
+		}
+
+#body {
+	width: 84%;
+	padding: 30px 3% 50px 3%;
+	margin: 40px 5% 10px 5%;
+	background-color: #fff;
+}
+
+/* Clearfix */
+.wrapper:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.wrapper {
+	display: inline-block;
+}
+ 
+html[xmlns] .wrapper {
+	display: block;
+}
+ 
+* html .wrapper {
+	height: 1%;
+}

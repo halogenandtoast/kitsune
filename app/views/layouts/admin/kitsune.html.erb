@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
 	<head>
 		<title>Kitsune CMS</title>
 		<%= stylesheet_link_tag 'kitsune/global.css' %>
@@ -11,29 +12,31 @@
 		<div id='content'>
 			<div id='header'>
 				<h1><%= link_to 'Kitsune CMS', :controller => 'admin/kitsune/models' %></h1>
-				<a href='/'>View Site</a>
+				<a href='/' class='view'>View Site</a>
 			</div>
 			<div class='kitsune_container'>
 				<div class='kitsune_right_container'>
-					<div class='kitsune_right'>
+					<div class='kitsune_right wrapper'>
 						<%= yield %>
 					</div>
 				</div>
 				<div class='kitsune_left'>
-					<% @models.each do |model| %>
-						<% if model.is_a? Hash %>
-							<% model.each do |key, value| %>
-								<div class='kitsune_category'>
-									<h3><%= key %></h3>
-									<% value.each do |inner_model| %>
-										<div class='kitsune_inner_model_link'><%= link_to inner_model.admin_name, :controller => 'admin/kitsune/records', :model_id => inner_model.object_class %></div>
-									<% end %>
-								</div>
-							<% end %>
-						<% else %>
-							<div class='kitsune_model_link'><%= link_to model.admin_name, :controller => 'admin/kitsune/records', :model_id => model.object_class %></div>
-						<% end %>
-					<% end %>
+          <div class='wrapper'>
+					  <% @models.each do |model| %>
+  						<% if model.is_a? Hash %>
+  							<% model.each do |key, value| %>
+  								<div class='kitsune_category'>
+  									<h3><%= key %></h3>
+  									<% value.each do |inner_model| %>
+  										<div class='kitsune_inner_model_link'><%= link_to inner_model.admin_name, :controller => 'admin/kitsune/records', :model_id => inner_model.object_class %></div>
+  									<% end %>
+  								</div>
+  							<% end %>
+  						<% else %>
+  							<div class='kitsune_model_link'><%= link_to model.admin_name, :controller => 'admin/kitsune/records', :model_id => model.object_class %></div>
+  						<% end %>
+  					<% end %>
+					</div>
 				</div>
 			</div>
 		</div>
