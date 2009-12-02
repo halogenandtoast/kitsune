@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: kitsune
 version: !ruby/object:Gem::Version 
-  version: 0.0.13
+  version: 0.0.14
 platform: ruby
 authors: 
 - Matthew Mongeau <matt@toastyapps.com>
@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-12-01 00:00:00 -05:00
+date: 2009-12-02 00:00:00 -05:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -75,9 +75,13 @@ files:
 - generators/kitsune/lib/insert_commands.rb
 - generators/kitsune/templates
 - generators/kitsune/templates/images
+- generators/kitsune/templates/images/back-arrow.gif
 - generators/kitsune/templates/images/bg.jpg
+- generators/kitsune/templates/images/box-shadow.png
+- generators/kitsune/templates/images/content-bg.gif
 - generators/kitsune/templates/images/form-bg.gif
 - generators/kitsune/templates/images/grey-btn.png
+- generators/kitsune/templates/images/header-bg.gif
 - generators/kitsune/templates/images/header-link.png
 - generators/kitsune/templates/images/nicEditorIcons.gif
 - generators/kitsune/templates/javascripts

@@ -17,7 +17,7 @@ class KitsuneGenerator < Rails::Generator::Base
       m.file "stylesheets/global.css", "public/stylesheets/kitsune/global.css"
       m.file "stylesheets/ie.css", "public/stylesheets/kitsune/ie.css"
       m.directory "public/images/kitsune/"
-      %w[bg.jpg form-bg.gif header-link.png grey-btn.png nicEditorIcons.gif].each do |image|
+      %w[back-arrow.gif box-shadow.png content-bg.gif header-bg.gif form-bg.gif header-link.png grey-btn.png nicEditorIcons.gif].each do |image|
         m.file "images/#{image}", "public/images/kitsune/#{image}"
       end
       
