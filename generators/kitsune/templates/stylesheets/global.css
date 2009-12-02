@@ -225,9 +225,12 @@ th.nobg {
 td {
 	border-bottom: 1px solid #eee;
 	background: #f6f6f6;
-	padding: 8px 6px 8px 12px;
 	color: #333;
 	font-size: .9em;
+	overflow:hidden;
+	max-width:300px;
+	padding: 8px 6px 8px 12px;
+	white-space:nowrap;
 }
 
 tr.alt, td.alt {

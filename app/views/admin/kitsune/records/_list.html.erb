@@ -11,7 +11,7 @@
 		<% records.each do |record| %>
 			<tr class="<%= cycle('odd', 'even') %>">
 				<% model.columns(:display).each do |column| %>
-					<td><%= truncate(sanitize(model.display_for(record, column.name).to_s), :length => 20) %></td>
+					<td><%= sanitize(model.display_for(record, column.name).to_s) %></td>
 				<% end %>
 				<td>
 					<% unless model.disabled?(:edit) %>
