@@ -3,7 +3,7 @@
 - form_for(@record, {:url => url_for_record(@record)}.merge(@model.form_options_for(@record))) do |form|
   %fieldset
     = form.error_messages
-    - if @model.versioned?
+    - if @model.versioned? && !@record.new_record?
       .record_details
         Version: #{@record.version}<br />
         Created At: #{@record.versions.find_by_number(@record.version).created_at}<br />
