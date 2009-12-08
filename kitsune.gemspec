@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: kitsune
 version: !ruby/object:Gem::Version 
-  version: 0.0.15
+  version: 0.0.16
 platform: ruby
 authors: 
 - Matthew Mongeau <matt@toastyapps.com>
@@ -21,6 +21,16 @@ dependencies:
     - - ~>
       - !ruby/object:Gem::Version 
         version: 2.3.11
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: haml
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ~>
+      - !ruby/object:Gem::Version 
+        version: 2.2.12
     version: 
 description: Integrated Rails Content Management System.
 email: matt@toastyapps.com
@@ -157,6 +167,7 @@ required_rubygems_version: !ruby/object:Gem::Requirement
   version: 
 requirements: 
 - will_paginate
+- haml
 rubyforge_project: 
 rubygems_version: 1.3.5
 signing_key: 
