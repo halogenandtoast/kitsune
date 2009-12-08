@@ -19,6 +19,13 @@ module Kitsune
 		def no_menu
 			no_admin
 		end
+		
+		
+		def versioned
+		  @resource.send(:versioned)
+		  @resource.kitsune_admin[:versioned] = true
+	  end
+	  
 
     def no_admin
       @resource.kitsune_admin[:no_admin] = true

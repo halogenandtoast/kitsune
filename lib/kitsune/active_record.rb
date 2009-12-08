@@ -14,7 +14,8 @@ module Kitsune
           :fields => {}, 
           :tabs => {},
           :is_sti => false,
-					:disabled => []
+					:disabled => [],
+					:versioned => false
         }
       end
     end

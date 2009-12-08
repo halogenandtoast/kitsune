@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: kitsune
 version: !ruby/object:Gem::Version 
-  version: 0.0.14
+  version: 0.0.15
 platform: ruby
 authors: 
 - Matthew Mongeau <matt@toastyapps.com>
@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-12-02 00:00:00 -05:00
+date: 2009-12-08 00:00:00 -05:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -50,19 +50,18 @@ files:
 - app/views/admin
 - app/views/admin/kitsune
 - app/views/admin/kitsune/models
-- app/views/admin/kitsune/models/_form.html.erb
-- app/views/admin/kitsune/models/index.html.erb
+- app/views/admin/kitsune/models/index.html.haml
 - app/views/admin/kitsune/pages
 - app/views/admin/kitsune/pages/_form.html.erb
 - app/views/admin/kitsune/pages/edit.html.erb
 - app/views/admin/kitsune/pages/index.html.erb
 - app/views/admin/kitsune/pages/new.html.erb
 - app/views/admin/kitsune/records
-- app/views/admin/kitsune/records/_form.html.erb
-- app/views/admin/kitsune/records/_list.html.erb
-- app/views/admin/kitsune/records/edit.html.erb
-- app/views/admin/kitsune/records/index.html.erb
-- app/views/admin/kitsune/records/new.html.erb
+- app/views/admin/kitsune/records/_form.html.haml
+- app/views/admin/kitsune/records/_list.html.haml
+- app/views/admin/kitsune/records/edit.html.haml
+- app/views/admin/kitsune/records/index.html.haml
+- app/views/admin/kitsune/records/new.html.haml
 - app/views/kitsune
 - app/views/kitsune/show.html.erb
 - app/views/layouts
@@ -85,6 +84,8 @@ files:
 - generators/kitsune/templates/images/header-link.png
 - generators/kitsune/templates/images/nicEditorIcons.gif
 - generators/kitsune/templates/javascripts
+- generators/kitsune/templates/javascripts/jquery.js
+- generators/kitsune/templates/javascripts/kitsune_jquery.js
 - generators/kitsune/templates/javascripts/nicEdit.js
 - generators/kitsune/templates/migrations
 - generators/kitsune/templates/migrations/create_pages.rb
@@ -93,11 +94,35 @@ files:
 - generators/kitsune/templates/stylesheets
 - generators/kitsune/templates/stylesheets/global.css
 - generators/kitsune/templates/stylesheets/ie.css
+- generators/kitsune/templates/VERSIONED_README
 - generators/kitsune/USAGE
 - generators/kitsune_flat_files
 - generators/kitsune_flat_files/kitsune_flat_files_generator.rb
 - generators/kitsune_flat_files/templates
 - generators/kitsune_flat_files/templates/index.html.erb
+- generators/kitsune_flat_files/templates/views
+- generators/kitsune_flat_files/templates/views/erb
+- generators/kitsune_flat_files/templates/views/erb/admin
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/models
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/models/_form.html.erb
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/models/index.html.erb
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/pages
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/pages/_form.html.erb
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/pages/edit.html.erb
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/pages/index.html.erb
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/pages/new.html.erb
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/records
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/records/_form.html.erb
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/records/_list.html.erb
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/records/edit.html.erb
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/records/index.html.erb
+- generators/kitsune_flat_files/templates/views/erb/admin/kitsune/records/new.html.erb
+- generators/kitsune_flat_files/templates/views/erb/kitsune
+- generators/kitsune_flat_files/templates/views/erb/kitsune/show.html.erb
+- generators/kitsune_flat_files/templates/views/erb/layouts
+- generators/kitsune_flat_files/templates/views/erb/layouts/admin
+- generators/kitsune_flat_files/templates/views/erb/layouts/admin/kitsune.html.erb
 - lib/kitsune
 - lib/kitsune/active_record.rb
 - lib/kitsune/builder.rb

@@ -16,6 +16,10 @@ module Kitsune
     def category
       kitsune_admin[:category] || nil
     end
+    
+    def versioned?
+      !!kitsune_admin[:versioned]
+    end
 
 		def disabled?(type)
 			kitsune_admin[:disabled].include?(type.to_sym)
@@ -74,7 +78,13 @@ module Kitsune
     def columns_for_display
       columns = @object.columns.dup
       if kitsune_admin[:display] && kitsune_admin[:display][:fields]
-        columns.select{|c| kitsune_admin[:display][:fields].include?(c.name.to_sym)}
+        columns = columns.select{|c| kitsune_admin[:display][:fields].include?(c.name.to_sym)}
+        column_names = columns.map{|c| c.name.to_sym}
+        fields_to_add = kitsune_admin[:display][:fields].reject{|f| column_names.include?(f)}
+        fields_to_add.each do |field|
+          columns << Kitsune::FauxColumn.new(field, :string)
+        end
+        columns
       else
         columns
       end

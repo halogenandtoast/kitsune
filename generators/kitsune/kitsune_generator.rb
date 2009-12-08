@@ -1,5 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + "/lib/insert_commands.rb")
 class KitsuneGenerator < Rails::Generator::Base
+  
+  def initialize(runtime_args, runtime_options = {})
+    @versioned = runtime_args.delete("--versioned")
+    super
+  end
+  
   def manifest
     record do |m|
       page_model = "app/models/page.rb"
@@ -10,9 +16,15 @@ class KitsuneGenerator < Rails::Generator::Base
         m.file "page.rb", page_model
         m.migration_template "migrations/create_pages.rb", 'db/migrate', :migration_file_name => "kitsune_create_pages"
       end
-            
+      if !!@versioned
+        Rails::Generator::Scripts::Generate.new.run(['vestal_versions_migration'])
+      end
+      
+                  
       m.directory "public/javascripts/kitsune/"
-      m.file "javascripts/nicEdit.js", "public/javascripts/kitsune/nicEdit.js"
+      %w[nicEdit.js jquery.js kitsune_jquery.js].each do |js|
+        m.file "javascripts/#{js}", "public/javascripts/kitsune/#{js}"
+      end
       m.directory "public/stylesheets/kitsune/"
       m.file "stylesheets/global.css", "public/stylesheets/kitsune/global.css"
       m.file "stylesheets/ie.css", "public/stylesheets/kitsune/ie.css"
@@ -21,7 +33,12 @@ class KitsuneGenerator < Rails::Generator::Base
         m.file "images/#{image}", "public/images/kitsune/#{image}"
       end
       
-      m.readme "README"
+      if !!@versioned
+        m.readme "VERSIONED_README"
+      else
+        m.readme "README"
+      end
+            
     end
   end
 end

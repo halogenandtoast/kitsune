@@ -1,0 +1,6 @@
+#kitsune_record_header
+  %h2.legend New #{params[:model_id]}
+  #menu.with_form
+    = link_to 'Back', :controller => 'admin/kitsune/records', :model_id => params[:model_id]
+
+= render 'form'

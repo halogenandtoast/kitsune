@@ -1,0 +1,12 @@
+#kitsune_record_header
+  %h2.legend Edit #{params[:model_id]}
+  #menu.with_form
+    = link_to 'Back', :controller => 'admin/kitsune/records', :model_id => params[:model_id]
+
+= render 'form'
+
+- @model.columns(:reflections).each do |column|
+  .reflection
+    %h3= column.name.to_s.titleize
+    = link_to 'New', :controller => 'admin/kitsune/records', :action => :new, :model_id => column.name.to_s.classify, (@record.class.to_s.underscore+'_id').to_sym => @record.id
+    = render :partial => 'list', :locals => { :model => Kitsune::Inspector.new(column.name.to_s.classify.constantize), :records => @record.send(column.name), :parent => @record }

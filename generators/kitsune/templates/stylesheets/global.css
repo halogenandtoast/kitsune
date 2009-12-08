@@ -396,3 +396,38 @@ html[xmlns] .wrapper {
 * html .wrapper {
 	height: 1%;
 }
+
+.kitsune_left a {
+  display: block;
+  padding: 5px;
+}
+a:hover {
+  color: #222;
+}
+.kitsune_left a:hover {
+  color: #222 !important;
+  background-color: #eee;
+}
+.highlight td {
+  background-color: #e2e2e2;
+}
+
+.warning {
+	padding: 5px;
+	text-align: center;
+	background-color: #FF0;
+	border: 1px solid #FFD700;
+	color: #CB9603;
+	margin-bottom: 10px;
+}
+
+.record_details {
+	margin: 0 20px 20px 20px;
+	border: 1px solid #BEDCE7;
+	background: #EAF2F5;
+	padding: 10px;
+}
+
+.record_details a {
+	margin-right: 10px;
+}

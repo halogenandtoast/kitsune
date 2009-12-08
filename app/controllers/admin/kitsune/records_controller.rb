@@ -82,5 +82,6 @@ class Admin::Kitsune::RecordsController < Admin::Kitsune::KitsuneController
   end
   def load_record
     @record = @model.find(params[:id]) if params[:id]
+    @record.revert_to(params[:version].to_i) if params[:version]
   end
 end

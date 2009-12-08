@@ -1,5 +1,5 @@
 <div id='kitsune_record_header'>
-	<h2><%= @model.admin_name %></h2>
+	<h2 class='legend'><%= @model.admin_name %></h2>
 	<% unless @model.disabled?(:new) %>
 		<div id='menu'>
 			<%= link_to "New #{params[:id]}", :controller => 'admin/kitsune/records', :action => :new, :model_id => params[:model_id] %>

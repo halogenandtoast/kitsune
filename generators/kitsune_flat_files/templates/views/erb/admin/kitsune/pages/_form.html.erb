@@ -1,0 +1,13 @@
+<% form_for [:admin, :kitsune, @page] do |f| %>
+	<div class='field'>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</div>
+	<div class='field'>
+		<%= f.label :body %>
+		<%= f.wysiwyg :body %>
+	</div>
+	<div class='submit_button'>
+		<%= f.submit 'Save' %>
+	</div>
+<% end %>
