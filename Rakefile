@@ -2,7 +2,7 @@ require 'rake'
 
 gem_spec = Gem::Specification.new do |gem_spec|
   gem_spec.name = "kitsune"
-  gem_spec.version = "0.0.16"
+  gem_spec.version = "0.0.17"
   gem_spec.summary = "Integrated Rails Content Management System."
   gem_spec.email = "matt@toastyapps.com"
   gem_spec.homepage = "http://github.com/toastyapps/kitsune"

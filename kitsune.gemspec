@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: kitsune
 version: !ruby/object:Gem::Version 
-  version: 0.0.16
+  version: 0.0.17
 platform: ruby
 authors: 
 - Matthew Mongeau <matt@toastyapps.com>
@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-12-08 00:00:00 -05:00
+date: 2009-12-10 00:00:00 -05:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -48,6 +48,7 @@ files:
 - app/controllers/admin/kitsune
 - app/controllers/admin/kitsune/application_controller.rb
 - app/controllers/admin/kitsune/kitsune_controller.rb
+- app/controllers/admin/kitsune/media_controller.rb
 - app/controllers/admin/kitsune/models_controller.rb
 - app/controllers/admin/kitsune/pages_controller.rb
 - app/controllers/admin/kitsune/records_controller.rb
@@ -59,6 +60,8 @@ files:
 - app/views
 - app/views/admin
 - app/views/admin/kitsune
+- app/views/admin/kitsune/media
+- app/views/admin/kitsune/media/new.html.erb
 - app/views/admin/kitsune/models
 - app/views/admin/kitsune/models/index.html.haml
 - app/views/admin/kitsune/pages
@@ -72,6 +75,8 @@ files:
 - app/views/admin/kitsune/records/edit.html.haml
 - app/views/admin/kitsune/records/index.html.haml
 - app/views/admin/kitsune/records/new.html.haml
+- app/views/admin/kitsune/shared
+- app/views/admin/kitsune/shared/_flashes.html.haml
 - app/views/kitsune
 - app/views/kitsune/show.html.erb
 - app/views/layouts
@@ -97,6 +102,7 @@ files:
 - generators/kitsune/templates/javascripts/jquery.js
 - generators/kitsune/templates/javascripts/kitsune_jquery.js
 - generators/kitsune/templates/javascripts/nicEdit.js
+- generators/kitsune/templates/javascripts/upload_maker.js
 - generators/kitsune/templates/migrations
 - generators/kitsune/templates/migrations/create_pages.rb
 - generators/kitsune/templates/page.rb
