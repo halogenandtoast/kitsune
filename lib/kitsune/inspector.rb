@@ -13,6 +13,14 @@ module Kitsune
       kitsune_admin[:name] || @object.to_s.pluralize
     end
     
+    def order_by
+       order_by_hash ? order_by_hash.map{|k,v| "#{k} #{v}"}.join(' ') : nil
+    end
+    
+    def order_by_hash
+      kitsune_admin[:order_by] || nil
+    end
+    
     def category
       kitsune_admin[:category] || nil
     end

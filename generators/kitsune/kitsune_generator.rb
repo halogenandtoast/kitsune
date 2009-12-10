@@ -3,19 +3,24 @@ class KitsuneGenerator < Rails::Generator::Base
   
   def initialize(runtime_args, runtime_options = {})
     @versioned = runtime_args.delete("--versioned")
+    @include_pages = runtime_args.delete("--include-page-model")
+    @include_users = runtime_args.delete("--include-user-model")
     super
   end
   
   def manifest
     record do |m|
-      page_model = "app/models/page.rb"
-      if File.exists?(page_model)
-        m.insert_into page_model, "include Kitsune::Page"
-      else
-        m.directory File.join("app", "models")
-        m.file "page.rb", page_model
-        m.migration_template "migrations/create_pages.rb", 'db/migrate', :migration_file_name => "kitsune_create_pages"
+      if !!@include_pages
+        page_model = "app/models/page.rb"
+        if File.exists?(page_model)
+          m.insert_into page_model, "include Kitsune::Page"
+        else
+          m.directory File.join("app", "models")
+          m.file "page.rb", page_model
+          m.migration_template "migrations/create_pages.rb", 'db/migrate', :migration_file_name => "kitsune_create_pages"
+        end
       end
+      
       if !!@versioned
         Rails::Generator::Scripts::Generate.new.run(['vestal_versions_migration'])
       end

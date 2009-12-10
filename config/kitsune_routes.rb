@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
       kitsune.resources :pages
       kitsune.resources :models do |model|
 				model.resources :records
+        model.resources :media, :only => [:new, :create]
 			end
     end
   end

@@ -1,6 +1,6 @@
 class Admin::Kitsune::KitsuneController < Admin::Kitsune::ApplicationController
   before_filter :load_models
-  
+  skip_before_filter :verify_authenticity_token
   private
   def load_models
     models = Kitsune.models_with_admin.map{ |m| Kitsune::Inspector.new(m) }

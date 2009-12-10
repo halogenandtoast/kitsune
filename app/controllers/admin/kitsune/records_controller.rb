@@ -5,7 +5,7 @@ class Admin::Kitsune::RecordsController < Admin::Kitsune::KitsuneController
   before_filter :load_record
   
   def index
-    order, @sort_param, @sort_dir = nil, nil, nil
+    order, @sort_param, @sort_dir = @model.order_by, nil, nil
     if params[:sort]
       @sort_param = params[:sort]
       @sort_dir = params[:sort_dir]
@@ -19,24 +19,28 @@ class Admin::Kitsune::RecordsController < Admin::Kitsune::KitsuneController
   end
   
   def create
-    if @model.is_sti? && params[params[:model_id].underscore][@model.sti_column].present?
-      sti_model = Kitsune::Inspector.new(params[params[:model_id].underscore].delete(@model.sti_column).constantize)
-      @record = sti_model.new_record(params[params[:model_id].underscore])
+    if request.xhr?
+      render :text => "Foo"
     else
-      @record = @model.new_record(params[params[:model_id].underscore])
-    end
-    if @record.save
-      flash[:notice] = "Record Saved"
-			if params[:redirect]
-				klass = params[:redirect].gsub(/_id$/, '').classify.constantize
-				record = klass.find(params[:redirect_id])
-				redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => klass.to_s, :id => params[:redirect_id], :action => :edit)
-			else
-				redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => @model.class_name)
-			end
-    else
-      flash[:notice] = "Could not save record"
-      render 'new'
+      if @model.is_sti? && params[params[:model_id].underscore][@model.sti_column].present?
+        sti_model = Kitsune::Inspector.new(params[params[:model_id].underscore].delete(@model.sti_column).constantize)
+        @record = sti_model.new_record(params[params[:model_id].underscore])
+      else
+        @record = @model.new_record(params[params[:model_id].underscore])
+      end
+      if @record.save
+        flash[:notice] = "Record Saved"
+  			if params[:redirect]
+  				klass = params[:redirect].gsub(/_id$/, '').classify.constantize
+  				record = klass.find(params[:redirect_id])
+  				redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => klass.to_s, :id => params[:redirect_id], :action => :edit)
+  			else
+  				redirect_to url_for(:controller => 'admin/kitsune/records', :model_id => @model.class_name)
+  			end
+      else
+        flash[:notice] = "Could not save record"
+        render 'new'
+      end
     end
   end
   
