@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: kitsune
 version: !ruby/object:Gem::Version 
-  version: 0.0.19
+  version: 0.1.0
 platform: ruby
 authors: 
 - Matthew Mongeau <matt@toastyapps.com>
@@ -491,6 +491,7 @@ files:
 - lib/kitsune/faux_column.rb
 - lib/kitsune/form_helper_ext.rb
 - lib/kitsune/inspector.rb
+- lib/kitsune/mongo_mapper.rb
 - lib/kitsune/page.rb
 - lib/kitsune.rb
 - rails/init.rb

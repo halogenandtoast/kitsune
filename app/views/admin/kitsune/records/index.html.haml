@@ -7,4 +7,5 @@
   = link_to key, value
 
 = render :partial => 'list', :locals => { :model => @model, :records => @records, :parent => nil }
-= will_paginate @records
+- if defined? will_paginate
+  = will_paginate @records

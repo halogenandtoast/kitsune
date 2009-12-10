@@ -8,7 +8,7 @@ module Kitsune
   autoload :Page, 'kitsune/page'
   class << self
     def version
-      '0.0.19'
+      '0.1.0'
     end
   
     def model_paths # abstract this to something else
@@ -29,7 +29,11 @@ module Kitsune
         Dir.glob(path+'/*').each do |file|
           begin
             klass = File.basename(file).gsub(/^(.+).rb/, '\1').classify.constantize
-            models << klass if klass.ancestors.include?(::ActiveRecord::Base)
+            if defined? ::ActiveRecord
+              models << klass if klass.ancestors.include?(::ActiveRecord::Base)
+            else defined? ::MongoMapper
+              models << klass if klass.ancestors.include?(::MongoMapper::Document)
+            end
           rescue Exception => e
             # not valid
           end

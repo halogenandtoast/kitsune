@@ -38,7 +38,11 @@ module Kitsune
     end
     
     def is_sti_child?
-      @object.ancestors[1] != ::ActiveRecord::Base
+      if defined? ::ActiveRecord
+        @object.ancestors[1] != ::ActiveRecord::Base
+      else
+        false
+      end
     end
     
     def sti_column
@@ -132,7 +136,7 @@ module Kitsune
         else
           kitsune_admin[:fields][column.name.to_sym][:type]
         end
-      elsif column.name =~ /_id$/
+      elsif column.name =~ /._id$/
         :select
       else
         case column.type
@@ -175,7 +179,7 @@ module Kitsune
     end
     
     def display_for(record, method, *args, &block)
-      if method.to_s =~ /_id$/
+      if method.to_s =~ /._id$/
         associated_record = record.send(method.to_s.gsub(/_id$/, '').to_sym, *args, &block)
         label_method = detect_label(associated_record)
         associated_record.send(label_method.to_sym)
@@ -202,7 +206,7 @@ module Kitsune
       
       if field_type(field) == :select
         [field_options(field), {:include_blank => true}]
-      elsif column.name =~ /_id$/
+      elsif column.name =~ /._id$/
         id = :id
         collection = find_association_class(column).all
         name = detect_label(collection)
