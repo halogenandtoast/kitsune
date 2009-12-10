@@ -27,9 +27,22 @@ class KitsuneGenerator < Rails::Generator::Base
       
                   
       m.directory "public/javascripts/kitsune/"
-      %w[nicEdit.js jquery.js kitsune_jquery.js upload_maker.js].each do |js|
+      %w[jquery.js kitsune_jquery.js upload_maker.js].each do |js|
         m.file "javascripts/#{js}", "public/javascripts/kitsune/#{js}"
       end
+      
+      tiny_mce_path = "public/javascripts/kitsune/tiny_mce"
+      m.directory tiny_mce_path
+      
+      Dir.glob(File.dirname(__FILE__)+"/templates/javascripts/tiny_mce/**/*").each do |file|
+        short_path = file.gsub(/#{File.dirname(__FILE__)}\/templates\/javascripts\/tiny_mce\//, '')
+        if File.directory?(file)
+          m.directory "public/javascripts/kitsune/tiny_mce/#{short_path}"
+        else
+          m.file "javascripts/tiny_mce/#{short_path}", "#{tiny_mce_path}/#{short_path}"
+        end
+      end
+      
       m.directory "public/stylesheets/kitsune/"
       m.file "stylesheets/global.css", "public/stylesheets/kitsune/global.css"
       m.file "stylesheets/ie.css", "public/stylesheets/kitsune/ie.css"
