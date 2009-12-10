@@ -27,7 +27,7 @@ class KitsuneGenerator < Rails::Generator::Base
       
                   
       m.directory "public/javascripts/kitsune/"
-      %w[nicEdit.js jquery.js kitsune_jquery.js].each do |js|
+      %w[nicEdit.js jquery.js kitsune_jquery.js upload_maker.js].each do |js|
         m.file "javascripts/#{js}", "public/javascripts/kitsune/#{js}"
       end
       m.directory "public/stylesheets/kitsune/"
