@@ -307,6 +307,10 @@ button.submitBtn:hover {
 			color: #fff;
 		}
 
+#flash_messages {padding:0px;}
+	.flash_notice {background:green; padding:5px; color:white;}
+	.flash_error {background:red; padding:5px; color:white;}
+
 .kitsune_container {
 	background:url('/images/kitsune/content-bg.gif') repeat-x left top;
 	padding-top: 20px;
