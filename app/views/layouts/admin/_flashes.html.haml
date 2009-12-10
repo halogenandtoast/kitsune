@@ -1,0 +1,9 @@
+#flash_messages
+  - [:notice,:error].each do |flash_type|
+    - if flash[flash_type]
+      %div{ :class => "flash_#{flash_type}" }
+        - unless flash[flash_type].is_a? Validatable::Errors
+          = flash[flash_type]
+        - else
+          - flash[flash_type].each do |n,msg|
+            = "#{n} #{msg}"
