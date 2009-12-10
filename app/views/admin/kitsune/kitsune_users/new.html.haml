@@ -1,0 +1,19 @@
+#kitsune_record_header
+  %h2.legend New User
+  #menu.with_form
+    = link_to 'Back', :controller => 'admin/kitsune/kitsune_users'
+
+- form_for([:admin, :kitsune, @user]) do |form|
+  %fieldset
+    = form.error_messages
+    .field
+      = form.label :email
+      = form.text_field :email
+    .field
+      = form.label :password
+      = form.password_field :password
+    .field
+      = form.label :password_confirmation
+      = form.password_field :password_confirmation
+    .submit_button
+      %button(value="Save" type='submit' class="submitBtn") <span>Save</span>

@@ -27,6 +27,9 @@
 		<div id='content'>
 			<div id='header'>
 				<h1><%= link_to 'Kitsune CMS', :controller => 'admin/kitsune/models' %></h1>
+				<% if Kitsune.authenticate && signed_in? %>
+					<%= link_to 'Sign out', url_for(:controller => 'admin/kitsune/sessions', :action => 'destroy'), :method => :delete, :class => 'sign_out' %>
+				<% end %>
 				<a href='/' class='view'>View Site</a>
 			</div>
 			<%= render "admin/kitsune/shared/flashes" %>
@@ -36,25 +39,27 @@
 						<%= yield %>
 					</div>
 				</div>
-				<div class='kitsune_left'>
-          <div class='wrapper'>
-            <ul>
-					  <% @models.each do |model| %>
-  						<% if model.is_a? Hash %>
-  							<% model.each do |key, value| %>
-  								<li class='kitsune_category'><%= key %>
-  									<% value.each do |inner_model| %>
-  										<li class='kitsune_inner_model_link'><%= link_to inner_model.admin_name, :controller => 'admin/kitsune/records', :model_id => inner_model.object_class %></li>
-  									<% end %>
-  								</li>
-  							<% end %>
-  						<% else %>
-  							<li class='kitsune_model_link'><%= link_to model.admin_name, :controller => 'admin/kitsune/records', :model_id => model.object_class %></li>
-  						<% end %>
-  					<% end %>
-  					</ul>
+				<% if @models %>
+					<div class='kitsune_left'>
+	          <div class='wrapper'>
+	            <ul>
+						  <% @models.each do |model| %>
+	  						<% if model.is_a? Hash %>
+	  							<% model.each do |key, value| %>
+	  								<li class='kitsune_category'><%= key %>
+	  									<% value.each do |inner_model| %>
+	  										<li class='kitsune_inner_model_link'><%= link_to inner_model.admin_name, :controller => 'admin/kitsune/records', :model_id => inner_model.object_class %></li>
+	  									<% end %>
+	  								</li>
+	  							<% end %>
+	  						<% else %>
+	  							<li class='kitsune_model_link'><%= link_to model.admin_name, :controller => 'admin/kitsune/records', :model_id => model.object_class %></li>
+	  						<% end %>
+	  					<% end %>
+	  					</ul>
+						</div>
 					</div>
-				</div>
+				<% end %>
 			</div>
 		</div>
 	</body>

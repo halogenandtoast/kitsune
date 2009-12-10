@@ -10,6 +10,14 @@ module Kitsune
     def version
       '0.1.0'
     end
+    
+    def authenticate
+      @authenticate ||= false
+    end
+    
+    def authenticate=(do_authenticate)
+      @authenticate = do_authenticate
+    end
   
     def model_paths # abstract this to something else
       @models_paths ||= ["#{RAILS_ROOT}/app/models"]

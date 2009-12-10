@@ -294,7 +294,15 @@ button.submitBtn:hover {
 		text-indent: -9999em;
 		width: 92px;
 	}
-	#header a.view:hover {
+	#header a.sign_out {
+		display: block;
+		float: right;
+		color: #BBB;
+		height: 27px;
+		margin: 5px 15px 0 0;
+		width: 92px;
+	}
+	#header a.view:hover, #header a.sign_out:hover {
 		color: #FFF;
 	}
 	#header h1 {

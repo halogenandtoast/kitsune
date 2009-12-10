@@ -21,6 +21,10 @@ class KitsuneGenerator < Rails::Generator::Base
         end
       end
       
+      if !!@include_users
+        m.migration_template "migrations/create_kitsune_users.rb", 'db/migrate', :migration_file_name => "kitsune_create_kitsune_users"
+      end
+      
       if !!@versioned
         Rails::Generator::Scripts::Generate.new.run(['vestal_versions_migration'])
       end
