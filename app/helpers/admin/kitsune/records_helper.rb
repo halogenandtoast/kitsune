@@ -31,4 +31,9 @@ module Admin::Kitsune::RecordsHelper
 			"<p><strong>Current File</strong>: " + image_tag(file.to_s) + "</p>"
 		end
 	end
+	
+	def kitsune_title
+	  " - #{@model.admin_name}" + " : #{params[:action].titleize}"
+	end
+	
 end

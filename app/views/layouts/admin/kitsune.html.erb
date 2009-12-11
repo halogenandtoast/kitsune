@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
 	<head>
-		<title>Kitsune CMS</title>
+		<title>Kitsune CMS <%= kitsune_title rescue "" %></title>
     <%= javascript_include_tag 'kitsune/jquery.js', 'kitsune/kitsune_jquery.js', 'kitsune/upload_maker.js' %>
 		<%= stylesheet_link_tag 'kitsune/global.css' %>
 		<!--[if IE]>
