@@ -5,11 +5,11 @@ A drop in Rails CMS
 *This is still being developed and is currently barely useable*
 
 
-@$ script/generate kitsune --include-page-model
+@$ script/generate kitsune --include-page-model@
 
-$ rake db:migrate
+@$ rake db:migrate@
 
-$ script/server@
+@$ script/server@
 
 
 Then go to:

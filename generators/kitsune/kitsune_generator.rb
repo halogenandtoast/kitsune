@@ -3,14 +3,14 @@ class KitsuneGenerator < Rails::Generator::Base
   
   def initialize(runtime_args, runtime_options = {})
     @versioned = runtime_args.delete("--versioned")
-    @include_pages = runtime_args.delete("--include-page-model")
-    @include_users = runtime_args.delete("--include-user-model")
+    @dont_include_pages = runtime_args.delete("--without-page")
+    @dont_include_users = runtime_args.delete("--without-user")
     super
   end
   
   def manifest
     record do |m|
-      if !!@include_pages
+      unless !!@dont_include_pages
         page_model = "app/models/page.rb"
         if File.exists?(page_model)
           m.insert_into page_model, "include Kitsune::Page"
@@ -21,7 +21,7 @@ class KitsuneGenerator < Rails::Generator::Base
         end
       end
       
-      if !!@include_users
+      unless !!@dont_include_users
         m.migration_template "migrations/create_kitsune_users.rb", 'db/migrate', :migration_file_name => "kitsune_create_kitsune_users"
       end
       
