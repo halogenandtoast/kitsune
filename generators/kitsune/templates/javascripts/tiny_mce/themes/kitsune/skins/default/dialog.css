@@ -1,19 +1,31 @@
 /* Generic */
 body {
 font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11px;
-background:#fff;
+background:#eee;
 padding:0;
 margin:10px 10px 0 10px;
 }
 
-html {background:#eee;}
 td {font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10px;}
 textarea {resize:none;outline:none;}
 a:link, a:visited {color:black;}
 a:hover {color:#2B6FB6;}
 
 /* Forms */
-fieldset {margin:0; padding:5px 15px 15px; border:1px solid #919B9C; font-family:Verdana, Arial; font-size:10px;}
+#general_panel, #list_panel {
+	background-color:#fff;
+	margin:0;
+	padding:5px 15px 15px;
+	border:1px solid #ccc;
+	font-family:Verdana, Arial;
+	font-size:10px;
+	clear:both;
+}
+fieldset {
+	margin:0;
+	padding:0;
+	border:0;
+}
 legend {color:#2B6FB6; font-weight:bold;}
 label.msg {display:none;}
 label.invalid {color:#EE0000; display:inline;}
@@ -46,17 +58,21 @@ td.charmap, #charmap a {width:18px; height:18px; color:#000; border:1px solid #A
 
 /* Source */
 .wordWrapCode {vertical-align:middle; border:1px none #000000; background:transparent;}
-.mceActionPanel {margin-top:5px;}
-
+.mceActionPanel {margin-top:5px;clear:both;}
 /* Tabs classes */
-.tabs {display: none;}
-.tabs ul {margin:0; padding:0; list-style:none;}
-.tabs li {float:left; background:url(img/tabs.gif) no-repeat 0 0; margin:0 2px 0 0; padding:0 0 0 10px; line-height:17px; height:18px; display:block;}
-.tabs li.current {background:url(img/tabs.gif) no-repeat 0 -18px; margin-right:2px;}
-.tabs span {float:left; display:block; background:url(img/tabs.gif) no-repeat right -36px; padding:0px 10px 0 0;}
-.tabs .current span {background:url(img/tabs.gif) no-repeat right -54px;}
-.tabs a {text-decoration:none; font-family:Verdana, Arial; font-size:10px;}
-.tabs a:link, .tabs a:visited, .tabs a:hover {color:black;}
+.tabs {
+	list-style-type:none;
+	margin:0;
+	padding:5px 0 0;
+}
+	.tabs li {
+		background-color:#fff;
+		border:1px solid #ccc;
+		border-bottom:none;
+		margin-left:5px;
+		padding:3px;
+		float:left;
+	}
 
 /* Panels */
 .panel_wrapper div.panel {display:none;}
@@ -75,8 +91,6 @@ h3 {font-size:14px;}
 .title {font-size:12px; font-weight:bold; color:#2B6FB6;}
 
 /* Dialog specific */
-#link .panel_wrapper, #link div.current {height:125px;}
-#image .panel_wrapper, #image div.current {height:200px;}
 #plugintable thead {font-weight:bold; background:#DDD;}
 #plugintable, #about #plugintable td {border:1px solid #919B9C;}
 #plugintable {width:96%; margin-top:10px;}
@@ -154,4 +168,17 @@ input#width, input#height {
 .mceActionPanel input {
 	-moz-border-radius:5px;
 	width: 100px;
+}
+
+#general_panel, #list_panel {
+	display:none;
+}
+#general_panel.current, #list_panel.current {
+	display:block;
+}
+
+#list_panel ul {
+	font-size:12px;
+	margin:10px;
+	padding:0;
 }

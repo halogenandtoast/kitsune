@@ -243,3 +243,18 @@ var ImageDialog = {
 
 ImageDialog.preInit();
 tinyMCEPopup.onInit.add(ImageDialog.init, ImageDialog);
+
+$(function() {
+	var ed = tinyMCEPopup.editor, dom = ed.dom, v, v2;
+	$.getJSON('images.json', function(json){
+		$.each(json.images.file, function(i,image) {
+			$('#list_panel ul').append('<li><a href="#" rel="' + image.path+image.value + '">' + image.value + '</a></li>')
+		});
+		$('#list_panel a').click(function() {
+			image = '<img src="' + $(this).attr('rel') + '" alt="' + $(this).text() + '"/>';
+			ed.execCommand('mceInsertContent', false, image, {skip_undo : 1});
+			tinyMCEPopup.close();
+			return false;
+		})
+	});
+})

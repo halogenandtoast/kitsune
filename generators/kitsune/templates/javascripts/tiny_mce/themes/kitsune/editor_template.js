@@ -1090,8 +1090,8 @@
 
 			ed.windowManager.open({
 				url : tinymce.baseURL + '/themes/kitsune/image.htm',
-				width : 355 + parseInt(ed.getLang('kitsune.image_delta_width', 0)),
-				height : 275 + parseInt(ed.getLang('kitsune.image_delta_height', 0)),
+				width : 800 + parseInt(ed.getLang('kitsune.image_delta_width', 0)),
+				height : 600 + parseInt(ed.getLang('kitsune.image_delta_height', 0)),
 				inline : true
 			}, {
 				theme_url : this.url
