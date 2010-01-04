@@ -1,11 +1,8 @@
 module Kitsune
   class FauxColumn
-    attr_accessor :name, :type
-    def initialize(name, type)
-      @name, @type = name, type
-    end
-    def primary
-      false
+    attr_accessor :name, :type, :primary
+    def initialize(name, type, primary = false)
+      @name, @type, @primary = name, type, primary
     end
   end
 end

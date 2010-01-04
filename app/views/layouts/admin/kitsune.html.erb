@@ -1,44 +1,65 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
 	<head>
-		<title>Kitsune CMS</title>
+		<title>Kitsune CMS <%= kitsune_title rescue "" %></title>
+    <%= javascript_include_tag 'kitsune/jquery.js', 'kitsune/kitsune_jquery.js', 'kitsune/upload_maker.js' %>
 		<%= stylesheet_link_tag 'kitsune/global.css' %>
 		<!--[if IE]>
       <%= stylesheet_link_tag 'kitsune/ie.css' %>
     <![endif]-->
-		<%= javascript_include_tag 'kitsune/nicEdit.js' %>
+		<%= javascript_include_tag 'kitsune/tiny_mce/tiny_mce.js' %>
+		<script type='text/javascript'>
+			tinyMCE.init({
+				plugins: "iespell",
+				theme: "kitsune",
+				width: "650px",
+				height: "500px",
+				theme_kitsune_buttons1 : "bold,italic,strikethrough,|,bullist,numlist,|,outdent,indent,|,image,link,unlink,|,code",
+				theme_kitsune_buttons2 : "",
+				theme_kitsune_buttons3 : "",
+				theme_kitsune_toolbar_location : "top",
+				convert_urls : false
+			});
+		</script>
+		<%= yield :head %>
 	</head>
 	<body>
 		<div id='content'>
 			<div id='header'>
 				<h1><%= link_to 'Kitsune CMS', :controller => 'admin/kitsune/models' %></h1>
+				<% if Kitsune.authenticate && signed_in? %>
+					<%= link_to 'Sign out', url_for(:controller => 'admin/kitsune/sessions', :action => 'destroy'), :method => :delete, :class => 'sign_out' %>
+				<% end %>
 				<a href='/' class='view'>View Site</a>
 			</div>
+			<%= render "admin/kitsune/shared/flashes" %>
 			<div class='kitsune_container'>
 				<div class='kitsune_right_container'>
 					<div class='kitsune_right wrapper'>
 						<%= yield %>
 					</div>
 				</div>
-				<div class='kitsune_left'>
-          <div class='wrapper'>
-            <ul>
-					  <% @models.each do |model| %>
-  						<% if model.is_a? Hash %>
-  							<% model.each do |key, value| %>
-  								<li class='kitsune_category'><%= key %>
-  									<% value.each do |inner_model| %>
-  										<li class='kitsune_inner_model_link'><%= link_to inner_model.admin_name, :controller => 'admin/kitsune/records', :model_id => inner_model.object_class %></li>
-  									<% end %>
-  								</li>
-  							<% end %>
-  						<% else %>
-  							<li class='kitsune_model_link'><%= link_to model.admin_name, :controller => 'admin/kitsune/records', :model_id => model.object_class %></li>
-  						<% end %>
-  					<% end %>
-  					</ul>
+				<% if @models %>
+					<div class='kitsune_left'>
+	          <div class='wrapper'>
+	            <ul>
+						  <% @models.each do |model| %>
+	  						<% if model.is_a? Hash %>
+	  							<% model.each do |key, value| %>
+	  								<li class='kitsune_category'><%= key %>
+	  									<% value.each do |inner_model| %>
+	  										<li class='kitsune_inner_model_link'><%= link_to inner_model.admin_name, :controller => 'admin/kitsune/records', :model_id => inner_model.object_class %></li>
+	  									<% end %>
+	  								</li>
+	  							<% end %>
+	  						<% else %>
+	  							<li class='kitsune_model_link'><%= link_to model.admin_name, :controller => 'admin/kitsune/records', :model_id => model.object_class %></li>
+	  						<% end %>
+	  					<% end %>
+	  					</ul>
+						</div>
 					</div>
-				</div>
+				<% end %>
 			</div>
 		</div>
 	</body>

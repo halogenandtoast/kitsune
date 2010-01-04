@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#kitsune_dlg.image_title}</title>
+	<script type="text/javascript" src="/javascripts/kitsune/jquery.js"></script>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="../../utils/mctabs.js"></script>
+	<script type="text/javascript" src="../../utils/form_utils.js"></script>
+	<script type="text/javascript" src="js/image.js"></script>
+</head>
+<body id="image" style="display: none">
+<form onsubmit="ImageDialog.update();return false;" action="#">
+	<ul class="tabs">
+		<li id="general_tab" class="current"><span><a href="javascript:mcTabs.displayTab('general_tab','general_panel');" onmousedown="return false;">{#kitsune_dlg.image_title}</a></span></li>
+		<li id="browse_tab"><span><a href="javascript:mcTabs.displayTab('browse_tab','list_panel');" onmousedown="return false;">{#kitsune_dlg.image_list}</a></span></li>
+	</ul>
+	<div id="general_panel" class="current">
+    <fieldset>
+      <div class="input text">
+        <label for="src">{#kitsune_dlg.image_src}</label>
+        <input id="src" name="src" type="text" class="mceFocus" value="" onchange="ImageDialog.getImageData();" />
+      </div>
+      <div class="input text">
+        <label for="src">{#kitsune_dlg.image_alt}</label>
+        <input id="alt" name="alt" type="text" value="" />
+      </div>
+      <div class="row">
+        <div class="input select">
+          <label for="align">{#kitsune_dlg.image_align}</label>
+          <select id="align" name="align" onchange="ImageDialog.updateStyle();">
+            <option value="">{#not_set}</option>
+            <option value="baseline">{#kitsune_dlg.image_align_baseline}</option>
+            <option value="top">{#kitsune_dlg.image_align_top}</option>
+            <option value="middle">{#kitsune_dlg.image_align_middle}</option>
+            <option value="bottom">{#kitsune_dlg.image_align_bottom}</option>
+            <option value="text-top">{#kitsune_dlg.image_align_texttop}</option>
+            <option value="text-bottom">{#kitsune_dlg.image_align_textbottom}</option>
+            <option value="left">{#kitsune_dlg.image_align_left}</option>
+            <option value="right">{#kitsune_dlg.image_align_right}</option>
+          </select>
+        </div>
+        <div class="input text dimensions">
+          <label for="width">{#kitsune_dlg.image_dimensions}</label>
+          <input id="width" name="width" type="text" value="" size="3" maxlength="5" />
+            x
+          <input id="height" name="height" type="text" value="" size="3" maxlength="5" />
+        </div>
+      </div>
+      <div class="mceActionPanel">
+    		<div style="float: left">
+    			<input type="submit" id="insert" name="insert" value="{#insert}" />
+    		</div>
+    		<div style="float: right">
+    			<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+    		</div>
+    	</div>
+    </fieldset>
+  </div>
+  <div id="list_panel">
+    <ul>
+    </ul>
+  </div>
+</form>
+</body>
+</html>

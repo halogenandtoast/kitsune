@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+	<head>
+		<title>Kitsune CMS</title>
+    <%= javascript_include_tag 'kitsune/jquery.js', 'kitsune/kitsune_jquery.js' %>
+		<%= stylesheet_link_tag 'kitsune/global.css' %>
+		<!--[if IE]>
+      <%= stylesheet_link_tag 'kitsune/ie.css' %>
+    <![endif]-->
+		<%= javascript_include_tag 'kitsune/nicEdit.js' %>
+	</head>
+	<body>
+		<div id='content'>
+			<div id='header'>
+				<h1><%= link_to 'Kitsune CMS', :controller => 'admin/kitsune/models' %></h1>
+				<a href='/' class='view'>View Site</a>
+			</div>
+			<div class='kitsune_container'>
+				<div class='kitsune_right_container'>
+					<div class='kitsune_right wrapper'>
+						<%= yield %>
+					</div>
+				</div>
+				<div class='kitsune_left'>
+          <div class='wrapper'>
+            <ul>
+					  <% @models.each do |model| %>
+  						<% if model.is_a? Hash %>
+  							<% model.each do |key, value| %>
+  								<li class='kitsune_category'><%= key %>
+  									<% value.each do |inner_model| %>
+  										<li class='kitsune_inner_model_link'><%= link_to inner_model.admin_name, :controller => 'admin/kitsune/records', :model_id => inner_model.object_class %></li>
+  									<% end %>
+  								</li>
+  							<% end %>
+  						<% else %>
+  							<li class='kitsune_model_link'><%= link_to model.admin_name, :controller => 'admin/kitsune/records', :model_id => model.object_class %></li>
+  						<% end %>
+  					<% end %>
+  					</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

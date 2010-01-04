@@ -294,7 +294,15 @@ button.submitBtn:hover {
 		text-indent: -9999em;
 		width: 92px;
 	}
-	#header a.view:hover {
+	#header a.sign_out {
+		display: block;
+		float: right;
+		color: #BBB;
+		height: 27px;
+		margin: 5px 15px 0 0;
+		width: 92px;
+	}
+	#header a.view:hover, #header a.sign_out:hover {
 		color: #FFF;
 	}
 	#header h1 {
@@ -306,6 +314,10 @@ button.submitBtn:hover {
 			text-decoration: none;
 			color: #fff;
 		}
+
+#flash_messages {padding:0px;}
+	.flash_notice {background:green; padding:5px; color:white;}
+	.flash_error {background:red; padding:5px; color:white;}
 
 .kitsune_container {
 	background:url('/images/kitsune/content-bg.gif') repeat-x left top;
@@ -395,4 +407,39 @@ html[xmlns] .wrapper {
  
 * html .wrapper {
 	height: 1%;
+}
+
+.kitsune_left a {
+  display: block;
+  padding: 5px;
+}
+a:hover {
+  color: #222;
+}
+.kitsune_left a:hover {
+  color: #222 !important;
+  background-color: #eee;
+}
+.highlight td {
+  background-color: #e2e2e2;
+}
+
+.warning {
+	padding: 5px;
+	text-align: center;
+	background-color: #FF0;
+	border: 1px solid #FFD700;
+	color: #CB9603;
+	margin-bottom: 10px;
+}
+
+.record_details {
+	margin: 0 20px 20px 20px;
+	border: 1px solid #BEDCE7;
+	background: #EAF2F5;
+	padding: 10px;
+}
+
+.record_details a {
+	margin-right: 10px;
 }

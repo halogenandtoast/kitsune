@@ -14,7 +14,10 @@ module Kitsune
           :fields => {}, 
           :tabs => {},
           :is_sti => false,
-					:disabled => []
+					:disabled => [],
+					:versioned => false,
+					:order_by => nil,
+					:media => nil # class to store images into
         }
       end
     end

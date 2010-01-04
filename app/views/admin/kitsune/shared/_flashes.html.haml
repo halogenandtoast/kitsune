@@ -1,0 +1,6 @@
+#flash_messages
+  - [:notice,:error].each do |flash_type|
+    - if flash[flash_type]
+      %div{ :class => "flash_#{flash_type}" }
+        - flash[flash_type].each do |n,msg|
+          = "#{n} #{msg}"

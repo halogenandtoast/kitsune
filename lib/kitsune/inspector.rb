@@ -13,8 +13,20 @@ module Kitsune
       kitsune_admin[:name] || @object.to_s.pluralize
     end
     
+    def order_by
+       order_by_hash ? order_by_hash.map{|k,v| "#{k} #{v}"}.join(' ') : nil
+    end
+    
+    def order_by_hash
+      kitsune_admin[:order_by] || nil
+    end
+    
     def category
       kitsune_admin[:category] || nil
+    end
+    
+    def versioned?
+      !!kitsune_admin[:versioned]
     end
 
 		def disabled?(type)
@@ -26,7 +38,11 @@ module Kitsune
     end
     
     def is_sti_child?
-      @object.ancestors[1] != ::ActiveRecord::Base
+      if defined? ::ActiveRecord
+        @object.ancestors[1] != ::ActiveRecord::Base
+      else
+        false
+      end
     end
     
     def sti_column
@@ -74,7 +90,13 @@ module Kitsune
     def columns_for_display
       columns = @object.columns.dup
       if kitsune_admin[:display] && kitsune_admin[:display][:fields]
-        columns.select{|c| kitsune_admin[:display][:fields].include?(c.name.to_sym)}
+        columns = columns.select{|c| kitsune_admin[:display][:fields].include?(c.name.to_sym)}
+        column_names = columns.map{|c| c.name.to_sym}
+        fields_to_add = kitsune_admin[:display][:fields].reject{|f| column_names.include?(f)}
+        fields_to_add.each do |field|
+          columns << Kitsune::FauxColumn.new(field, :string)
+        end
+        columns
       else
         columns
       end
@@ -114,7 +136,7 @@ module Kitsune
         else
           kitsune_admin[:fields][column.name.to_sym][:type]
         end
-      elsif column.name =~ /_id$/
+      elsif column.name =~ /._id$/
         :select
       else
         case column.type
@@ -157,7 +179,7 @@ module Kitsune
     end
     
     def display_for(record, method, *args, &block)
-      if method.to_s =~ /_id$/
+      if method.to_s =~ /._id$/
         associated_record = record.send(method.to_s.gsub(/_id$/, '').to_sym, *args, &block)
         label_method = detect_label(associated_record)
         associated_record.send(label_method.to_sym)
@@ -184,7 +206,7 @@ module Kitsune
       
       if field_type(field) == :select
         [field_options(field), {:include_blank => true}]
-      elsif column.name =~ /_id$/
+      elsif column.name =~ /._id$/
         id = :id
         collection = find_association_class(column).all
         name = detect_label(collection)

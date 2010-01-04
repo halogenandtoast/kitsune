@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+			<%= javascript_include_tag 'kitsune/jquery.js', 'kitsune/kitsune_jquery.js', 'kitsune/upload_maker.js' %>
+    	<script type="text/javascript">
+    	 $(document).ready(function() {
+    	   //Get the parent window
+    	   up = window.parent.document;
+    	   <%	if @upload %>
+    	    var destination = '<%= params['destination'] %>'
+    	    //Update value
+    	    $('#' + destination, up).val('<%= @upload.send(@parent.kitsune_admin[:media].values.first).url %>');
+    	    //Trigger select
+    	    $('#' + destination, up).focus();
+    	   <% end %>
+    	 })
+    	</script>
+    </head>
+    <body style="background-color:transparent; margin:0px; padding:0px; overflow:hidden;">
+				<% form_for(@parent_instance, :url => url_for_record(@parent_instance).gsub(/records/, 'media')+"?id=#{@media.class.to_s}", :html => {:multipart => true, :id => "upload_image_form"}) do |form| %>
+            <input type="hidden" name="destination" value="<%= params['destination'] %>">
+            <div id="controls">
+                                    <input type="hidden" name="domain" value="data"/>
+
+                    <div style="font:normal 11px 'Lucida Grande',Verdana; color:#aaa;
+                    text-decoration:none; cursor:pointer; position:absolute;
+                    right:0px; top:0px; height:16px; line-height:16px;">+ Upload photo</div>
+                            </div>
+
+            <div
+            style="position:absolute; right:0px; top:0px;
+            width:100px; height:24px;
+            filter:alpha(opacity=0); -moz-opacity:0; opacity:0; overflow:hidden;"><input
+            type="file" id="image" name="image"
+            style="cursor:pointer; height:24px; position:absolute;
+            right:0px; top:0px;"
+            onchange="document.getElementById('upload_image_form').submit();
+            document.getElementById('controls').style.display = 'none';
+            document.getElementById('loader').style.display = 'inline';"/></div>
+
+            <img src="http://assets.tumblr.com/images/bookmarklet_loader.gif" id="loader" style="display:none; width:16px;
+            height:16px; position:absolute; top:0px; right:0px;"/>
+        <% end %>
+    </body>
+
+</html>

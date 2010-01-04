@@ -1,0 +1,13 @@
+- #@kitsune_title = @model.admin_name
+
+#kitsune_record_header
+  %h2.legend= @model.admin_name
+  - unless @model.disabled?(:new)
+    #menu= link_to "New #{params[:id]}", :controller => 'admin/kitsune/records', :action => :new, :model_id => params[:model_id]
+
+- @model.tabs.each do |key, value|
+  = link_to key, value
+
+= render :partial => 'list', :locals => { :model => @model, :records => @records, :parent => nil }
+- if defined? will_paginate
+  = will_paginate @records

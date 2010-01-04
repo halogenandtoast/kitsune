@@ -8,7 +8,15 @@ module Kitsune
   autoload :Page, 'kitsune/page'
   class << self
     def version
-      '0.0.14'
+      '0.1.0'
+    end
+    
+    def authenticate
+      @authenticate ||= false
+    end
+    
+    def authenticate=(do_authenticate)
+      @authenticate = do_authenticate
     end
   
     def model_paths # abstract this to something else
@@ -18,10 +26,6 @@ module Kitsune
     def model_paths=(paths)
       @model_paths = paths
     end
-    
-    # def model_paths<<(path)
-    #       @model_paths << path
-    #     end
     
     def models_with_admin
       models.select{|m| m.respond_to?(:kitsune_admin) && !m.kitsune_admin[:no_admin]} # quacks like a duck
@@ -33,7 +37,11 @@ module Kitsune
         Dir.glob(path+'/*').each do |file|
           begin
             klass = File.basename(file).gsub(/^(.+).rb/, '\1').classify.constantize
-            models << klass if klass.ancestors.include?(::ActiveRecord::Base)
+            if defined? ::ActiveRecord
+              models << klass if klass.ancestors.include?(::ActiveRecord::Base)
+            else defined? ::MongoMapper
+              models << klass if klass.ancestors.include?(::MongoMapper::Document)
+            end
           rescue Exception => e
             # not valid
           end

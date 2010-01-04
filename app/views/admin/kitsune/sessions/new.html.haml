@@ -1,0 +1,12 @@
+#kitsune_record_header
+  %h2.legend Sign in
+- form_for :session, :url => admin_kitsune_session_path do |form|
+  %fieldset
+    .field
+      = form.label :email
+      = form.text_field :email
+    .field
+      = form.label :password
+      = form.password_field :password
+    .submit_button
+      %input(value="Sign in" type='submit' class="submitBtn")

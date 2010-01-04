@@ -1,0 +1,27 @@
+- if params[:version]
+  .warning You are viewing a previous version. Click save if you wish to revert to this version.
+- form_for(@record, {:url => url_for_record(@record)}.merge(@model.form_options_for(@record))) do |form|
+  %fieldset
+    = form.error_messages
+    - if @model.versioned? && !@record.new_record?
+      .record_details
+        Version: #{@record.version}<br />
+        Created At: #{@record.versions.find_by_number(@record.version).created_at}<br />
+        - if @record.version > 1
+          = link_to '&larr; Previous Version', :version => @record.version - 1
+        - unless @record.version + 1 >= @record.last_version
+          = link_to 'Next Version &rarr;', :version => @record.version + 1
+        - if params[:version]
+          = link_to 'Current Version &rarr;', :version => nil
+    - @model.columns(:edit).each do |column|
+      .field
+        - unless params[column.name]
+          = form.label column.name
+          = form.send(@model.form_type(column), column.name, *@model.options_for(column))
+          = additional_content_for(@model, @record, column)
+        - else
+          = form.hidden_field column.name, :value => params[column.name]
+          = hidden_field_tag :redirect, column.name
+          = hidden_field_tag :redirect_id, params[column.name]
+    .submit_button
+      %button(value="Save" type='submit' class="submitBtn") <span>Save</span>

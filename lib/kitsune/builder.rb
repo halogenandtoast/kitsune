@@ -1,7 +1,7 @@
 module Kitsune
   class TypeError < StandardError; end
   class Builder
-    
+        
     TYPES = [:check_box, :datetime_select, :password_field, :text_area, :text_field, :wysiwyg]
     def initialize(resource, &block)
       @resource = resource
@@ -16,9 +16,23 @@ module Kitsune
       @resource.kitsune_admin[:name] = name
     end
     
+    def media media
+      @resource.kitsune_admin[:media] = media
+    end
+    
 		def no_menu
 			no_admin
 		end
+		
+		def order_by(order)
+		  @resource.kitsune_admin[:order_by] = order
+	  end
+		
+		def versioned
+		  @resource.send(:versioned)
+		  @resource.kitsune_admin[:versioned] = true
+	  end
+	  
 
     def no_admin
       @resource.kitsune_admin[:no_admin] = true
@@ -71,6 +85,14 @@ module Kitsune
       add :select, field, {:options => options}
     end
     
+    def string(field)
+      add :text_field, field
+    end
+    
+    def text(field)
+      add :text_area, field
+    end
+    
     def sti(field, options = {})
       add :sti, field, {:options => options}
       is_sti field
@@ -87,13 +109,36 @@ module Kitsune
     end
     
     def display(*fields)
-      set :display, fields
+      fields.each do |field|
+        if field.is_a?(Hash)
+          field.each do |key, value|
+            set :display, key
+            set_attributes(key, value)
+          end
+        else
+          set :display, field
+        end
+      end
+    end
+    
+    def set_attributes(field, attributes)
+      [attributes].flatten.each do |attribute|
+        send(attribute.to_sym, field)
+      end
     end
     
     def edit(*fields)
       fields.each do |field|
-        type = @resource.reflections[field.to_sym] ? :reflections : :edit
-        set type, field
+        if field.is_a?(Hash)
+          field.each do |key, value|
+            type = @resource.reflections[key.to_sym] ? :reflections : :edit
+            set(type, key)
+            set_attributes(key, value)
+          end
+        else
+          type = @resource.reflections[field.to_sym] ? :reflections : :edit
+          set type, field
+        end
       end
     end
     
@@ -104,6 +149,8 @@ module Kitsune
     def method_missing(method, *args, &block)
       if TYPES.include?(method)
         add method, *args
+      else
+        raise Exception, "THIS IS WRONG@! #{method.to_s}"
       end
     end
     
