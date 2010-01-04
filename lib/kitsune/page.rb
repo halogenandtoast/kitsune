@@ -9,6 +9,7 @@ module Kitsune
         
         before_save :update_url
         belongs_to :page, :foreign_key => "parent_id"
+        belongs_to :parent
         
         def update_url
           write_attribute :url, title
