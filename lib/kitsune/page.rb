@@ -9,10 +9,14 @@ module Kitsune
         
         before_save :update_url
         belongs_to :page, :foreign_key => "parent_id"
-        belongs_to :parent
+        belongs_to :parent, :class_name => 'Page'
         
         def update_url
-          write_attribute :url, title
+          unless url.present?
+            write_attribute :url, CGI.escape(title.downcase.gsub(/\s+/, '-')) 
+          else
+            write_attribute :url, CGI.escape(url)
+          end
         end
       end
     end

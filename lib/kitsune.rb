@@ -8,7 +8,7 @@ module Kitsune
   autoload :Page, 'kitsune/page'
   class << self
     def version
-      '0.1.1'
+      '0.1.2'
     end
     
     def authenticate

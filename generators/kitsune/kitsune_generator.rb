@@ -22,6 +22,7 @@ class KitsuneGenerator < Rails::Generator::Base
       end
       
       unless !!@dont_include_users
+        m.sleep 1 unless !!@dont_include_pages
         m.migration_template "migrations/create_kitsune_users.rb", 'db/migrate', :migration_file_name => "kitsune_create_kitsune_users"
       end
       

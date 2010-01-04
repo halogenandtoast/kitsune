@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: kitsune
 version: !ruby/object:Gem::Version 
-  version: 0.1.1
+  version: 0.1.2
 platform: ruby
 authors: 
 - Matthew Mongeau <matt@toastyapps.com>
