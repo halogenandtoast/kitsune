@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: kitsune
 version: !ruby/object:Gem::Version 
-  version: 0.1.0
+  version: 0.1.1
 platform: ruby
 authors: 
 - Matthew Mongeau <matt@toastyapps.com>
@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-12-10 00:00:00 -05:00
+date: 2010-01-04 00:00:00 -05:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -48,10 +48,12 @@ files:
 - app/controllers/admin/kitsune
 - app/controllers/admin/kitsune/application_controller.rb
 - app/controllers/admin/kitsune/kitsune_controller.rb
+- app/controllers/admin/kitsune/kitsune_users_controller.rb
 - app/controllers/admin/kitsune/media_controller.rb
 - app/controllers/admin/kitsune/models_controller.rb
 - app/controllers/admin/kitsune/pages_controller.rb
 - app/controllers/admin/kitsune/records_controller.rb
+- app/controllers/admin/kitsune/sessions_controller.rb
 - app/controllers/kitsune_controller.rb
 - app/helpers
 - app/helpers/admin
@@ -60,6 +62,9 @@ files:
 - app/views
 - app/views/admin
 - app/views/admin/kitsune
+- app/views/admin/kitsune/kitsune_users
+- app/views/admin/kitsune/kitsune_users/index.html.haml
+- app/views/admin/kitsune/kitsune_users/new.html.haml
 - app/views/admin/kitsune/media
 - app/views/admin/kitsune/media/new.html.erb
 - app/views/admin/kitsune/models
@@ -75,6 +80,8 @@ files:
 - app/views/admin/kitsune/records/edit.html.haml
 - app/views/admin/kitsune/records/index.html.haml
 - app/views/admin/kitsune/records/new.html.haml
+- app/views/admin/kitsune/sessions
+- app/views/admin/kitsune/sessions/new.html.haml
 - app/views/admin/kitsune/shared
 - app/views/admin/kitsune/shared/_flashes.html.haml
 - app/views/kitsune
@@ -422,6 +429,53 @@ files:
 - generators/kitsune/templates/javascripts/tiny_mce/themes/advanced/skins/o2k7/ui_black.css
 - generators/kitsune/templates/javascripts/tiny_mce/themes/advanced/skins/o2k7/ui_silver.css
 - generators/kitsune/templates/javascripts/tiny_mce/themes/advanced/source_editor.htm
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/about.htm
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/anchor.htm
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/charmap.htm
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/color_picker.htm
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/editor_template.js
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/editor_template_src.js
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/image.htm
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/images.json
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/img
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/img/colorpicker.jpg
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/img/icons.gif
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/js
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/js/about.js
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/js/anchor.js
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/js/charmap.js
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/js/color_picker.js
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/js/image.js
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/js/link.js
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/js/source_editor.js
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/langs
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/langs/en.js
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/langs/en_dlg.js
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/link.htm
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/default
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/default/content.css
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/default/dialog.css
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/default/img
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/default/img/buttons.png
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/default/img/items.gif
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/default/img/menu_arrow.gif
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/default/img/menu_check.gif
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/default/img/progress.gif
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/default/img/tabs.gif
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/default/ui.css
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/o2k7
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/o2k7/content.css
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/o2k7/dialog.css
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/o2k7/img
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/o2k7/img/button_bg.png
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/o2k7/img/button_bg_black.png
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/o2k7/img/button_bg_silver.png
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/o2k7/ui.css
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/o2k7/ui_black.css
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/skins/o2k7/ui_silver.css
+- generators/kitsune/templates/javascripts/tiny_mce/themes/kitsune/source_editor.htm
 - generators/kitsune/templates/javascripts/tiny_mce/themes/simple
 - generators/kitsune/templates/javascripts/tiny_mce/themes/simple/editor_template.js
 - generators/kitsune/templates/javascripts/tiny_mce/themes/simple/editor_template_src.js
@@ -447,7 +501,9 @@ files:
 - generators/kitsune/templates/javascripts/tiny_mce/utils/mctabs.js
 - generators/kitsune/templates/javascripts/tiny_mce/utils/validate.js
 - generators/kitsune/templates/javascripts/upload_maker.js
+- generators/kitsune/templates/kitsune_user.rb
 - generators/kitsune/templates/migrations
+- generators/kitsune/templates/migrations/create_kitsune_users.rb
 - generators/kitsune/templates/migrations/create_pages.rb
 - generators/kitsune/templates/page.rb
 - generators/kitsune/templates/README
@@ -494,6 +550,7 @@ files:
 - lib/kitsune/mongo_mapper.rb
 - lib/kitsune/page.rb
 - lib/kitsune.rb
+- lib/kitsune_user.rb
 - rails/init.rb
 has_rdoc: true
 homepage: http://github.com/toastyapps/kitsune
