@@ -1,23 +1,30 @@
+require 'rubygems'
 require 'rake'
-
-gem_spec = Gem::Specification.new do |gem_spec|
-  gem_spec.name = "kitsune"
-  gem_spec.version = "0.1.2"
-  gem_spec.summary = "Integrated Rails Content Management System."
-  gem_spec.email = "matt@toastyapps.com"
-  gem_spec.homepage = "http://github.com/toastyapps/kitsune"
-  gem_spec.description = "Integrated Rails Content Management System."
-  gem_spec.authors = ["Matthew Mongeau <matt@toastyapps.com>"]
-  gem_spec.files = FileList["[A-Z]*", "{app,config,generators,lib,rails}/**/*"]
-  gem_spec.requirements << "will_paginate"
-  gem_spec.requirements << "haml"
-  gem_spec.add_dependency('will_paginate', '~> 2.3.11')
-  gem_spec.add_dependency('haml', '~> 2.2.12')
-end
-
-desc "Generate gemspec file"
-task :gemspec do
-  File.open("#{gem_spec.name}.gemspec", 'w') do |f|
-    f.write gem_spec.to_yaml
+require 'rake/testtask'
+require 'rake/rdoctask'
+ 
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |g|
+    g.name = 'kitsune'
+    g.summary = %(Integrated Rails Content Management System.)
+    g.description = %(Integrated Rails Content Management System.)
+    g.email = 'matt@toastyapps.com'
+    g.homepage = 'http://github.com/toastyapps/kitsune'
+    g.authors = %w(toastyapps <matt@toastyapps.com>)
+    g.requirements << "will_paginate"
+    g.requirements << "haml"
+    g.add_dependency('will_paginate', '~> 2.3.11')
+    g.add_dependency('haml', '~> 2.2.12')
   end
+  Jeweler::GemcutterTasks.new
+rescue LoadError
+  puts 'Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com'
 end
+ 
+Rake::TestTask.new do |t|
+  t.libs = %w(test)
+  t.pattern = 'test/**/*_test.rb'
+end
+ 
+task :default => :test
