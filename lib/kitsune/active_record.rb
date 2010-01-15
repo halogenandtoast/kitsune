@@ -10,6 +10,7 @@ module Kitsune
           :multipart => false, 
           :display => {}, 
           :edit => {}, 
+          :show => {},
           :reflections => {},
           :fields => {}, 
           :tabs => {},

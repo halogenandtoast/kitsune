@@ -25,6 +25,7 @@ module Kitsune
 		end
 		
 		def order_by(order)
+		  order = {order => :asc} unless order.is_a?(Hash)
 		  @resource.kitsune_admin[:order_by] = order
 	  end
 		
@@ -64,6 +65,20 @@ module Kitsune
       @resource.kitsune_admin[:sortable] ||= []
       fields.each do |field|
         @resource.kitsune_admin[:sortable] << field.to_sym
+      end
+    end
+    
+    def always(*fields)
+      @resource.kitsune_admin[:always] ||= []
+      fields.each do |field|
+        @resource.kitsune_admin[:always] << field.to_sym
+      end
+    end
+    
+    def linked(*fields) # link to resource
+      @resource.kitsune_admin[:linked] ||= []
+      fields.each do |field|
+        @resource.kitsune_admin[:linked] << field.to_sym
       end
     end
     
@@ -117,6 +132,19 @@ module Kitsune
           end
         else
           set :display, field
+        end
+      end
+    end
+    
+    def show(*fields)
+      fields.each do |field|
+        if field.is_a?(Hash)
+          field.each do |key, value|
+            set :show, key
+            set_attributes(key, value)
+          end
+        else
+          set :show, field
         end
       end
     end

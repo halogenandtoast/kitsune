@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{kitsune}
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["toastyapps", "<matt@toastyapps.com>"]
-  s.date = %q{2010-01-11}
+  s.date = %q{2010-01-15}
   s.description = %q{Integrated Rails Content Management System.}
   s.email = %q{matt@toastyapps.com}
   s.extra_rdoc_files = [

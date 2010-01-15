@@ -67,7 +67,7 @@ module Kitsune
       else
         kolumns = send("columns_for_#{type}") if respond_to?("columns_for_#{type}")
       end
-      include_pk ? kolumns : kolumns.reject{|c| c.primary }
+      include_pk ? kolumns : (kolumns || []).reject{|c| c.primary }
     end
     
     def columns_for_edit
@@ -102,6 +102,21 @@ module Kitsune
       end
     end
     
+    def columns_for_show
+      columns = @object.columns.dup
+      if kitsune_admin[:show] && kitsune_admin[:show][:fields]
+        columns = columns.select{|c| kitsune_admin[:show][:fields].include?(c.name.to_sym)}
+        column_names = columns.map{|c| c.name.to_sym}
+        fields_to_add = kitsune_admin[:show][:fields].reject{|f| column_names.include?(f)}
+        fields_to_add.each do |field|
+          columns << Kitsune::FauxColumn.new(field, :string)
+        end
+        columns
+      else
+        columns
+      end
+    end
+    
     def columns_for_reflections
 			if kitsune_admin[:reflections] && kitsune_admin[:reflections][:fields]
 				kitsune_admin[:reflections][:fields].map do |field|
@@ -115,6 +130,16 @@ module Kitsune
     def column_sortable(column)
       # move to column proxy
       kitsune_admin[:sortable] && kitsune_admin[:sortable].include?(column.name.to_sym)
+    end
+    
+    def always?(column)
+      # move to column proxy
+      kitsune_admin[:always] && kitsune_admin[:always].include?(column.name.to_sym)
+    end
+    
+    def column_linked?(column)
+      # move to column proxy
+      kitsune_admin[:linked] && kitsune_admin[:linked].include?(column.name.to_sym)
     end
     
     def method_missing(method, *args, &block)

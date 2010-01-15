@@ -15,7 +15,7 @@
           = link_to 'Current Version &rarr;', :version => nil
     - @model.columns(:edit).each do |column|
       .field
-        - unless params[column.name]
+        - unless params[column.name] && !@model.always?(column)
           = form.label column.name
           = form.send(@model.form_type(column), column.name, *@model.options_for(column))
           = additional_content_for(@model, @record, column)
