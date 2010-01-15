@@ -27,7 +27,7 @@ module Kitsune
         end
         
         def must_be_kitsune_route
-          unless ActionController::Routing::Routes.recognize_path(url.present? ? url : url_for_page)[:controller] == 'kitsune'
+          unless ActionController::Routing::Routes.recognize_path(url.present? ? url : url_for_page, :method => :get)[:controller] == 'kitsune'
             errors.add_to_base("URL is already being used")
           end
         end
