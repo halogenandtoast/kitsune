@@ -1,0 +1,5 @@
+- if @page.data[:content_for]
+  - @page.data[:content_for].each do |key, value|
+    - content_for(key) do
+      = value
+= @page.body

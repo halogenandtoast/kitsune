@@ -28,6 +28,7 @@ class Admin::Kitsune::RecordsController < Admin::Kitsune::KitsuneController
       else
         @record = @model.new_record(params[params[:model_id].underscore])
       end
+      @model.run_hooks(:before_save, @record)
       if @record.save
         flash[:notice] = "Record Saved"
   			if params[:redirect]
@@ -44,6 +45,10 @@ class Admin::Kitsune::RecordsController < Admin::Kitsune::KitsuneController
     end
   end
   
+  def edit
+    @model.run_hooks(:on_edit, @record)
+  end
+  
   def update
     
     if @model.is_sti_child? && params[params[:model_id].underscore][:type]
@@ -52,7 +57,7 @@ class Admin::Kitsune::RecordsController < Admin::Kitsune::KitsuneController
         @record.save
       end
     end
-    
+    @model.run_hooks(:before_save, @record)
     if @record.update_attributes(params[params[:model_id].underscore])
       flash[:notice] = "Record Saved"
 			if params[:redirect]

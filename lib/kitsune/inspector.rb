@@ -33,6 +33,10 @@ module Kitsune
 			kitsune_admin[:disabled].include?(type.to_sym)
 		end
     
+    def run_hooks(type, *args)
+      kitsune_admin[type.to_sym].call(*args) if kitsune_admin[type.to_sym]
+    end
+    
     def is_sti?
       kitsune_admin[:is_sti]
     end

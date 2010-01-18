@@ -6,6 +6,7 @@ class KitsuneCreatePages < ActiveRecord::Migration
       t.string :layout
       t.text :body
       t.integer :parent_id
+      t.text :data
     end
   end
   

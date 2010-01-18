@@ -20,6 +20,14 @@ module Kitsune
       @resource.kitsune_admin[:media] = media
     end
     
+    def on_edit &block
+      @resource.kitsune_admin[:on_edit] = block
+    end
+    
+    def before_save &block
+      @resource.kitsune_admin[:before_save] = block
+    end
+    
 		def no_menu
 			no_admin
 		end

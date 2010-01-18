@@ -3,5 +3,6 @@ class KitsuneController < ApplicationController
     @page = ::Page.find_by_url('/'+[params[:url]].flatten.join('/'))
     raise ::ActionController::RoutingError, "No route matches #{request.path.inspect}" unless @page.present?
 		@title = @page.title
+		render :layout => @page.layout if @page.layout
   end
 end

@@ -1,14 +1,15 @@
 if defined?(ActionController::Routing::RouteSet)
   class ActionController::Routing::RouteSet
-    def load_routes_with_kitsune!
+    def add_configuration_file_with_kitsune(file)
       lib_path = File.dirname(__FILE__)
       kitsune_routes = File.join(lib_path, *%w[.. .. .. config kitsune_routes.rb])
-      unless configuration_files.include?(kitsune_routes)
-        add_configuration_file(kitsune_routes)
+      if configuration_files.include?(kitsune_routes)
+        self.configuration_files.delete(kitsune_routes)
       end
-      load_routes_without_kitsune!
+      add_configuration_file_without_kitsune(file)
+      add_configuration_file_without_kitsune(kitsune_routes)
     end
     
-    alias_method_chain :load_routes!, :kitsune
+    alias_method_chain :add_configuration_file, :kitsune
   end
 end
