@@ -31,6 +31,14 @@ module Kitsune
         serialize :data
         
         
+        def after_save
+          ActionController::Routing::Routes.reload!
+        end
+        
+        def after_destroy
+          ActionController::Routing::Routes.reload!
+        end
+        
         def title_for_url
           CGI.escape(title.downcase.gsub(/\s+/, '-')).squeeze('-')
         end
@@ -47,6 +55,7 @@ module Kitsune
           unless ActionController::Routing::Routes.recognize_path(url.present? ? url : url_for_page, :method => :get)[:controller] == 'kitsune'
             errors.add_to_base("URL is already being used")
           end
+        rescue
         end
       end
     end

@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{kitsune}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["toastyapps", "<matt@toastyapps.com>"]
@@ -48,6 +48,7 @@ Gem::Specification.new do |s|
      "app/views/admin/kitsune/sessions/new.html.haml",
      "app/views/admin/kitsune/shared/_flashes.html.haml",
      "app/views/kitsune/show.html.erb",
+     "app/views/kitsune/show.html.haml",
      "app/views/layouts/admin/kitsune.html.erb",
      "config/kitsune_routes.rb",
      "doc/developers.html",
@@ -377,6 +378,7 @@ Gem::Specification.new do |s|
      "lib/kitsune/faux_column.rb",
      "lib/kitsune/form_helper_ext.rb",
      "lib/kitsune/inspector.rb",
+     "lib/kitsune/layout.rb",
      "lib/kitsune/mongo_mapper.rb",
      "lib/kitsune/page.rb",
      "lib/kitsune_user.rb",
